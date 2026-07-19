@@ -17,7 +17,7 @@ type Props = {
 
 // Component React
 // Props: tables from page.tsx
-// Return: component
+// Return: component 
 // Logic: build component combine click handle action
 export default function TablesClient({ tables }: Props) {
   const router = useRouter();
