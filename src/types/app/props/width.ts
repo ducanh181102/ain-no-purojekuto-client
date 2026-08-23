@@ -1,4 +1,4 @@
-import { MaxWidth, MinWidth, Width } from "@/constants/props/widths";
+import { Width, MaxWidth, MinWidth } from "@/constants/props/sizes";
 
 export type Width = typeof Width[keyof typeof Width];
 export type MaxWidth = typeof MaxWidth[keyof typeof MaxWidth];
