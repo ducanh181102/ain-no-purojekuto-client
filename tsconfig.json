@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/types/components/organisms/list/dish-list.ts", "src/components/common/organisms/filter-bar"  ],
   "exclude": ["node_modules"]
 }
