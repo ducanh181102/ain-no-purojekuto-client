@@ -120,9 +120,8 @@ export const ChipSize = {
 export const MinHeight = {
   // app
   screenHeight: NumSize.screenHeight,
-
-  // topbar
   topbar: NumSize.topBarHeight,
+  toolbar: NumSize.toolBarHeight,
 
   // chip
   chipSmall: NumSize.smallChipHeight,

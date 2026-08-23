@@ -8,7 +8,7 @@ import { Display } from "@/constants/props/displays";
 import { AlignItems, Flex, FlexDirection, Gap, JustifyContent } from "@/constants/props/flexs";
 import { GridTemplateColumns, GridTemplateRows } from "@/constants/props/grids";
 import { OverflowY, Position, Top } from "@/constants/props/position";
-import { BorderRadius, Height, MaxHeight, Padding, Width } from "@/constants/props/sizes";
+import { BorderRadius, Height, MaxHeight, MinHeight, Padding, Width } from "@/constants/props/sizes";
 import TablesClient from "../../../components/features/tables/tables-client";
 import { getTables } from "../../../services/table.service";
 import { BorderStyle, BorderWidth } from "@/constants/props/borders";
@@ -32,7 +32,7 @@ export default async function TablesPage() {
         flexDirection: FlexDirection.row,
         alignItems: AlignItems.flexStart,
         gap: Gap.medium,
-        minHeight: MaxHeight.toolbar,
+        minHeight: MinHeight.toolbar,
         bgcolor: SxColor.background,
       }}>
         <TableFilter />
