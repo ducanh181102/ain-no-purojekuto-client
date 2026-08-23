@@ -24,7 +24,7 @@ export default function Topbar() {
 
   return (
     <BoxAtoms
-      component={Component.topbar}
+      component={Component.header}
       sx={{
         display: Display.flex,
         flexDirection: FlexDirection.row,
