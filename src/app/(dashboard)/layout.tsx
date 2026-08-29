@@ -5,8 +5,7 @@ import Topbar from "@/components/layouts/topbar";
 import { SxColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
-import { ZIndex } from "@/constants/props/position";
-import { Margin, MinHeight, NumSize, Width } from "@/constants/props/sizes";
+import { Margin, MinHeight, Width } from "@/constants/props/sizes";
 
 export default function DashboardLayout({
   children,

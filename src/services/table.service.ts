@@ -12,3 +12,9 @@ export async function getTables(): Promise<TableMoleculeProps[]> {
 
   return res.json();
 } 
+
+export async function getTableById(id: number) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tables/${id}`)
+  if (!res.ok) throw new Error("Không lấy được thông tin bàn")
+  return res.json()
+}

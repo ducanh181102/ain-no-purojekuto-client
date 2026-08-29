@@ -71,6 +71,28 @@ export const GridTemplateRows = {
   autoCardLarge: "repeat(auto-fit, minmax(220px, 1fr))",
 } as const;
 
+export const GridAutoRows = {
+  small: "120px",
+  medium: "160px",
+  large: "220px",
+
+  cardSmall: "120px",
+  cardMedium: "160px",
+  cardLarge: "220px",
+
+  autoSmall: "minmax(120px, max-content)",
+  autoMedium: "minmax(160px, max-content)",
+  autoLarge: "minmax(220px, max-content)",
+
+  fitSmall: "minmax(120px, 1fr)",
+  fitMedium: "minmax(160px, 1fr)",
+  fitLarge: "minmax(220px, 1fr)",
+
+  maxContent: "max-content",
+  minContent: "min-content",
+  auto: "auto",
+} as const
+
 export const JustifyContent = {
   // A / B / C /......
   start: 'start',

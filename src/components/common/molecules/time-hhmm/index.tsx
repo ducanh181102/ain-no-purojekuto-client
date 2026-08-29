@@ -8,9 +8,9 @@ import { FontWeight } from "@/constants/props/font-weights";
 import { TextVariant } from "@/constants/props/variants";
 import { Strings } from "@/constants/strings";
 import { Locale } from "@/types/app/locales";
-import { CapacityGuestProps } from "@/types/components/common/molecule/capacity-guest";
+import { TimeHhMmProps } from "@/types/components/common/molecule/time-hhmm";
 
-export default function CapacityGuest({ capacity, sx }: CapacityGuestProps) {
+export default function TimeHhMm({ time, sx }: TimeHhMmProps) {
   const locale: Locale = "vi";
 
   return <TextAtoms variant={TextVariant.caption}
@@ -21,7 +21,6 @@ export default function CapacityGuest({ capacity, sx }: CapacityGuestProps) {
       fontWeight: FontWeight.w400,
     }}
     children={
-      `${capacity} 
-          ${Strings[locale].text.guest}`
-    }></TextAtoms>
+      `${time}`}
+  ></TextAtoms>
 }

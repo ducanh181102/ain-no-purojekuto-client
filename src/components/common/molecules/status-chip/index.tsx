@@ -7,7 +7,7 @@ import { Locale } from "@/types/app/locales";
 import { StatusChipProps } from "@/types/components/common/molecule/status-chip";
 import { TableStatusKey } from "@/types/keys";
 
-export default function StatusChip({ status, variant, sx, size, count, onClick }: StatusChipProps) {
+export default function StatusChip({ status, variant, sx, icon, count, onClick }: StatusChipProps) {
 
   const locale: Locale = "vi";
   const statusKey: TableStatusKey = status?.toLowerCase() as TableStatusKey;
@@ -18,8 +18,8 @@ export default function StatusChip({ status, variant, sx, size, count, onClick }
   return <ChipAtoms variant={variant}
     color={color}
     label={label}
-    size={size}
     onClick={onClick}
+    icon={icon}
     sx={{
       ...sx,
       bgcolor: bgColor

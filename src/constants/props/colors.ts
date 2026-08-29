@@ -47,6 +47,7 @@ const MuiColors = {
     txSuccess: 'success',
     txError: 'error',
     txInfo: 'info',
+    txDefault: 'default',
     txWarning: 'warning',
     txTextPrimary: 'textPrimary',
     txTextSecondary: 'textSecondary',
@@ -86,6 +87,8 @@ export const SxColor = {
     infoSoft: Colors.infoSoft,
     defaultSoft: Colors.defaultSoft,
 
+    blackBtn: Colors.black,
+
     backgroundItem: Colors.backgroundItem,
     background: Colors.background,
 
@@ -113,6 +116,16 @@ export const TextColor = {
     textPrimary: MuiColors.txTextPrimary,
     textSecondary: MuiColors.txTextSecondary,
     textDisabled: MuiColors.txTextDisabled,
+} as const;
+
+export const ButtonColor = {
+    primary: MuiColors.txPrimary,
+    secondary: MuiColors.txSecondary,
+    success: MuiColors.txSuccess,
+    error: MuiColors.txError,
+    info: MuiColors.txInfo,
+    warning: MuiColors.txWarning,
+    default: MuiColors.txDefault,
 } as const;
 
 export const ColorTableStatus = {

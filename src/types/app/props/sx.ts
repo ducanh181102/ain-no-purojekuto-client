@@ -14,15 +14,17 @@ import {
   RowGap,
 } from "./flexs";
 import { FontWeight } from "./font-weight";
-import { AlignContentGrid, AlignItemsGrid, GridTemplateColumns, GridTemplateRows, JustifyContentGrid, JustifyItemsGrid } from "./grids";
+import { AlignContentGrid, AlignItemsGrid, GridAutoRows, GridTemplateColumns, GridTemplateRows, JustifyContentGrid, JustifyItemsGrid } from "./grids";
 import { Height, MaxHeight, MinHeight } from "./heights";
 import { CustomsZIndex, Inset, Overflow, OverflowY, Position, Top } from "./position";
 import { FontSize, NumSize } from "./sizes";
 import { MaxWidth, MinWidth, Width } from "./width";
+import { Cursor } from "./cursor";
 
 export type Sx = {
   display?: Display,
   bgcolor?: SxColor,
+  cursor?: Cursor,
 
   minHeight?: MinHeight,
   maxHeight?: MaxHeight,
@@ -67,6 +69,7 @@ export type Sx = {
   gridTemplateColumns?: GridTemplateColumns,
   // chia hàng
   gridTemplateRows?: GridTemplateRows,
+  gridAutoRows?: GridAutoRows,
   // Căn item theo chiều ngang trong ô:
   justifyItems?: JustifyItemsGrid,
   // justifyContent = Căn toàn bộ grid theo chiều ngang khi còn khoảng trống:

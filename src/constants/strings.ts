@@ -15,7 +15,17 @@ export const Strings = {
       capacity: "Sức chứa",
       guest: "khách",
       threeDot: "...",
-      searchTableInput: "Tìm bàn..."
+      twoDot: ":",
+      hyphen: "-",
+      searchTableInput: "Tìm bàn...",
+      start: "Bắt đầu",
+      orderInf: "Thông tin đơn hàng",
+      tempCalculate: "Tạm tính",
+      discount: "Giảm giá",
+      total: "Tổng cộng",
+      viewOrder: "Xem đơn hàng",
+      addDish: "Thêm món",
+      pay: "Thanh toán",
     }
   },
   en: {
@@ -33,7 +43,17 @@ export const Strings = {
       capacity: "Capacity",
       guest: "guest",
       threeDot: "...",
-      searchTableInput: "Search table..."
+      twoDot: ":",
+      hyphen: "-",
+      searchTableInput: "Search table...",
+      start: "Start",
+      orderInf: "Order info",
+      tempCalculate: "Temporarily calculated",
+      discount: "Discount",
+      total: "Total",
+      viewOrder: "View order",
+      addDish: "Add dish",
+      pay: "Pay",
     }
   },
 } as const;

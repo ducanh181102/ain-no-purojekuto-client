@@ -1,23 +1,21 @@
 import BoxAtoms from "@/components/common/atoms/box";
-import DetailPanel from "@/components/common/organisms/detail-panel";
+import TableDetailPanel from "@/components/features/tables/table-detail-panel";
 import TableFilter from "@/components/features/tables/table-filter";
 import TableSearch from "@/components/features/tables/table-search";
+import { BorderStyle, BorderWidth } from "@/constants/props/borders";
 import { SxColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
 import { AlignItems, Flex, FlexDirection, Gap, JustifyContent } from "@/constants/props/flexs";
-import { GridTemplateColumns, GridTemplateRows } from "@/constants/props/grids";
+import { AlignContent, GridAutoRows, GridTemplateColumns, GridTemplateRows } from "@/constants/props/grids";
 import { OverflowY, Position, Top } from "@/constants/props/position";
-import { BorderRadius, Height, MaxHeight, MinHeight, Padding, Width } from "@/constants/props/sizes";
+import { BorderRadius, FontSize, Height, MinHeight, Padding, Width } from "@/constants/props/sizes";
 import TablesClient from "../../../components/features/tables/tables-client";
-import { getTables } from "../../../services/table.service";
-import { BorderStyle, BorderWidth } from "@/constants/props/borders";
-import TableDetailPanel from "@/components/features/tables/table-detail-panel";
+import { FontWeight } from "@/constants/props/font-weights";
 
 // Component React
 // Props: -
 export default async function TablesPage() {
-  const tables = (await getTables());;
 
   return (
     <BoxAtoms component={Component.section} sx={{
@@ -50,12 +48,13 @@ export default async function TablesPage() {
           display: Display.grid,
           bgcolor: SxColor.background,
           gridTemplateColumns: GridTemplateColumns.fourColumns,
-          gridTemplateRows: GridTemplateRows.autoContent,
+          gridAutoRows: GridAutoRows.cardSmall,
+          alignContent: AlignContent.start,
           gap: Gap.medium,
           width: Width.filterbar,
           height: Height.tableClient,
           overflowY: OverflowY.auto,
-        }} tables={tables} />
+        }} />
         <TableDetailPanel sx={{
           height: Height.detailPanel,
           flex: Flex.auto,
@@ -68,6 +67,13 @@ export default async function TablesPage() {
           borderRadius: BorderRadius.medium,
 
           p: Padding.mediumSpace,
+          fontSize: FontSize.x3large,
+
+          fontWeight: FontWeight.w700,
+
+          display: Display.flex,
+          flexDirection: FlexDirection.column,
+          gap: Gap.xLarge,
 
         }} />
       </BoxAtoms>

@@ -7,7 +7,7 @@ import { TextVariant } from "@/types/app/props/variants";
 
 //? & dùng để gộp type
 export type TextAtomsProps = {children: string} & {
-    variant: TextVariant;
+    variant?: TextVariant;
     component: Component,
     color?: TextColor,
     align?: TextAlign,
