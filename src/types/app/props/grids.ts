@@ -1,11 +1,12 @@
 import {
     AlignContent, AlignItems,
     ColumnGap,
-    Gap, GridTemplateColumns, GridTemplateRows, JustifyContent, JustifyItems, RowGap
+    Gap, GridAutoRows, GridTemplateColumns, GridTemplateRows, JustifyContent, JustifyItems, RowGap
 } from "@/constants/props/grids";
 
 export type GridTemplateColumns = typeof GridTemplateColumns[keyof typeof GridTemplateColumns];
 export type GridTemplateRows = typeof GridTemplateRows[keyof typeof GridTemplateRows];
+export type GridAutoRows = typeof GridAutoRows[keyof typeof GridAutoRows];
 
 export type AlignItemsGrid = typeof AlignItems[keyof typeof AlignItems];
 export type JustifyItemsGrid = typeof JustifyItems[keyof typeof JustifyItems];

@@ -6,4 +6,5 @@ import { Sx } from "@/types/app/props/sx";
 export type CardMoleculeProps = ChildrenProps & {
     component: Component,
     sx?: Sx,
+    onClick?: () => void,
 }

@@ -1,9 +1,9 @@
 import { BoxAtomsProps } from "@/types/components/common/atoms/box"
 import { Box } from "@mui/material"
 
-export default function BoxAtoms({ component, sx, isHideScroll, children }: BoxAtomsProps) {
+export default function BoxAtoms({ component, sx, isHideScroll, onClick, children }: BoxAtomsProps) {
 
-    return <Box component={component} sx={{
+    return <Box component={component} onClick={onClick} sx={{
         ...sx,
         ...(isHideScroll && {
             scrollbarWidth: "none",

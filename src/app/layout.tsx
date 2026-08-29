@@ -1,8 +1,9 @@
+import QueryProvider from "@/providers/query-provider";
+import { ChildrenProps } from "@/types/app/children";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
-import { ChildrenProps } from "@/types/app/children";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,9 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <QueryProvider>{children}</QueryProvider>
+        </Providers>
       </body>
     </html>
   );

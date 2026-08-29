@@ -31,10 +31,12 @@ export const NumSize = {
   xlargeLen: 96,
 
   // fontSize
-  smallFontSize: 8,
-  mediumFontSize: 12,
-  largeFontSize: 16,
-  xlargeFontSize: 20,
+  smallFontSize: 9,
+  mediumFontSize: 13,
+  largeFontSize: 15,
+  xlargeFontSize: 17,
+  x2largeFontSize: 19,
+  x3largeFontSize: 23,
 
   // Width App
   screenWidth: "100vw",
@@ -47,14 +49,17 @@ export const NumSize = {
   // Height App
   screenHeight: "100vh",
   topBarHeight: "9vh",
-  detailPanelHeight: "73vh",
+  detailPanelHeight: "66vh",
   mainAreaHeight: "91vh",
   toolBarHeight: "7vh",
   tableClient: "64vh",
 
   // Width Item
-  xsmallChipWidth: "10px",
-  smallChipWidth: "20px",
+  xsmallChipWidth: "120px",
+  smallChipWidth: "140px",
+  mediumChipWidth: "160px",
+  largeChipWidth: "180px",
+  xlargeChipWidth: "200px",
 
   xsmallCardWidth: "16px",
   smallCardWidth: "32px",
@@ -115,6 +120,7 @@ export const MaxLength = {
 export const ChipSize = {
   medium: StrSize.medium,
   small: StrSize.small,
+  large: StrSize.large,
 } as const;
 
 export const MinHeight = {
@@ -211,8 +217,11 @@ export const Width = {
   full: NumSize.full,
 
   // chip
-  chipSmall: NumSize.xsmallChipWidth,
-  chipMedium: NumSize.xsmallChipWidth,
+  chipXSmall: NumSize.xsmallChipWidth,
+  chipSmall: NumSize.smallChipWidth,
+  chipMedium: NumSize.mediumChipWidth,
+  chipLarge: NumSize.largeChipWidth,
+  chipXLarge: NumSize.xlargeChipWidth,
 
   // avatar
   avatarSmall: NumSize.smallAvatarWidth,
@@ -333,5 +342,8 @@ export const FontSize = {
   medium: NumSize.mediumFontSize,
   large: NumSize.largeFontSize,
   xlarge: NumSize.xlargeFontSize,
+  x2large: NumSize.x2largeFontSize,
+  x3large: NumSize.x3largeFontSize,
+  
 }
 

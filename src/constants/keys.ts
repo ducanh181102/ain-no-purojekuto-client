@@ -1,11 +1,11 @@
-export const TableStatusKey = {
+export const TableStatus = {
   all: "all",
   available: "available",
   occupied: "occupied",
   reserved: "reserved",
 } as const;
 
-export const UpperCaseTableStatusKey = {
+export const UpperCaseTableStatus = {
   all: "ALL",
   available: "AVAILABLE",
   occupied: "OCCUPIED",

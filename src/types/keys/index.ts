@@ -1,8 +1,8 @@
-import { TableStatusKey, UpperCaseTableStatusKey } from "@/constants/keys";
+import { TableStatus, UpperCaseTableStatus } from "@/constants/keys";
 
 export type TableStatusKey =
-  typeof TableStatusKey[keyof typeof TableStatusKey];
+  typeof TableStatus[keyof typeof TableStatus];
   
 export type UpperCaseTableStatusKey =
-  typeof UpperCaseTableStatusKey[keyof typeof UpperCaseTableStatusKey];
+  typeof UpperCaseTableStatus[keyof typeof UpperCaseTableStatus];
 

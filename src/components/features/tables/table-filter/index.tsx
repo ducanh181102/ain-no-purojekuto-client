@@ -1,36 +1,56 @@
 'use client'
 
 import FilterBar from "@/components/common/organisms/filter-bar";
-import { TableStatusKey, UpperCaseTableStatusKey } from "@/constants/keys";
+import { TableStatus, UpperCaseTableStatus } from "@/constants/keys";
+import {
+    useStatusAllTableCount,
+    useStatusAvailableTableCount,
+    useStatusOccupiedTableCount,
+    useStatusReservedTableCount
+} from "@/hooks/queries/useTables";
+import { useTableStore } from "@/stores/useTableStore";
 import { FilterTableStatus } from "@/types/components/features/tables/table-filter";
+import CheckIcon from "@mui/icons-material/Check";
 
 
 export default function TableFilter() {
 
+    const {data: allCount = 0} = useStatusAllTableCount();
+    const {data: availableCount = 0} = useStatusAvailableTableCount();
+    const {data: occupiedCount = 0} = useStatusOccupiedTableCount();
+    const {data: reservedCount = 0} = useStatusReservedTableCount();
+
+    const setSelectedStatus = useTableStore((status) => status.setSelectedStatus);
+    const status = useTableStore((state) => state.selectedStatus) || "ALL"
+
     const tableStatuses: FilterTableStatus[] = [
         {
-            key: TableStatusKey.all,
-            count: 12,
-            status: UpperCaseTableStatusKey.all,
-            onClick: () => console.log(TableStatusKey.all),
+            key: TableStatus.all,
+            count: allCount,
+            status: UpperCaseTableStatus.all,
+            icon: status === UpperCaseTableStatus.all ? <CheckIcon /> : undefined,
+            onClick: () => setSelectedStatus(UpperCaseTableStatus.all),
         },
         {
-            key: TableStatusKey.available,
-            count: 12,
-            status: UpperCaseTableStatusKey.available,
-            onClick: () => console.log(TableStatusKey.available),
+            key: TableStatus.available,
+            count: availableCount,
+            status: UpperCaseTableStatus.available,
+            icon: status === UpperCaseTableStatus.available ? <CheckIcon /> : undefined,
+            onClick: () => setSelectedStatus(UpperCaseTableStatus.available),
         },
         {
-            key: TableStatusKey.occupied,
-            count: 12,
-            status: UpperCaseTableStatusKey.occupied,
-            onClick: () => console.log(TableStatusKey.occupied),
+            key: TableStatus.occupied,
+            count: occupiedCount,
+            status: UpperCaseTableStatus.occupied,
+            icon: status === UpperCaseTableStatus.occupied ? <CheckIcon /> : undefined,
+            onClick: () => setSelectedStatus(UpperCaseTableStatus.occupied),
         },
         {
-            key: TableStatusKey.reserved,
-            count: 12,
-            status: UpperCaseTableStatusKey.reserved,
-            onClick: () => console.log(TableStatusKey.reserved),
+            key: TableStatus.reserved,
+            count: reservedCount,
+            status: UpperCaseTableStatus.reserved,
+            icon: status === UpperCaseTableStatus.reserved ? <CheckIcon /> : undefined,
+            onClick: () => setSelectedStatus(UpperCaseTableStatus.reserved),
         },
     ]
 
