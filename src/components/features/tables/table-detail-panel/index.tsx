@@ -45,7 +45,6 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
                     width: Width.chipXSmall,
                     fontWeight: FontWeight.w400
                 }}
-                size={ChipSize.medium}
             />
             <BoxAtoms component={Component.div} sx={{
                 display: Display.flex,
