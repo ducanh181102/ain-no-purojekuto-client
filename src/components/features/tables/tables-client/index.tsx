@@ -9,7 +9,7 @@ import { Component } from "@/constants/props/components";
 import { Cursor } from "@/constants/props/cursor";
 import { Display } from "@/constants/props/displays";
 import { AlignItems, FlexDirection, Gap } from "@/constants/props/flexs";
-import { BorderRadius, ChipSize, FontSize, MinHeight, NumSize, Padding } from "@/constants/props/sizes";
+import { BorderRadius, FontSize, MinHeight, NumSize, Padding } from "@/constants/props/sizes";
 import { ChipVariant } from "@/constants/props/variants";
 import { useCreateOrder } from "@/hooks/mutations/useCreateOrder";
 import { useTableStatus } from "@/hooks/queries/useTables";
@@ -70,7 +70,7 @@ export default function TablesClient({ sx }: TablesClientProps) {
             >
               <TitleTable title={table.name}></TitleTable>
               <CapacityGuest capacity={table.capacity}></CapacityGuest>
-              <StatusChip status={table.status} size={ChipSize.medium}
+              <StatusChip status={table.status}
                 variant={ChipVariant.outlined} onClick={() =>
                   handleCreateOrder(table.id)
                 }
