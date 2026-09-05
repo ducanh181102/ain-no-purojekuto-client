@@ -52,7 +52,7 @@ export const NumSize = {
   detailPanelHeight: "66vh",
   mainAreaHeight: "91vh",
   toolBarHeight: "7vh",
-  tableClient: "64vh",
+  tableClient: "66vh",
 
   // Width Item
   xsmallChipWidth: "120px",

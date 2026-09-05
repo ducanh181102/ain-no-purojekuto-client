@@ -13,20 +13,56 @@ import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
 import { AlignItems, FlexDirection, Gap, JustifyContent } from "@/constants/props/flexs";
 import { FontWeight } from "@/constants/props/font-weights";
-import { ChipSize, FontSize, MinHeight, NumSize, Width } from "@/constants/props/sizes";
+import { FontSize, MinHeight, NumSize, Width } from "@/constants/props/sizes";
 import { ButtonVariant, ChipVariant, TextVariant } from "@/constants/props/variants";
 import { Strings } from "@/constants/strings";
+import { useOrderItemByOrderId } from "@/hooks/queries/useOrderItems";
+import { useOrderById } from "@/hooks/queries/useOrders";
 import { useTableById } from "@/hooks/queries/useTables";
+import { useOrderStore } from "@/stores/useOrderStore";
 import { useTableStore } from "@/stores/useTableStore";
 import { Locale } from "@/types/app/locales";
 import { TableDetailPanelProps } from "@/types/components/features/tables/table-detail-panel";
 
 export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
     const locale: Locale = "vi";
-    
+
     const tableId = useTableStore((state) => state.selectedTableId)
+    const orderId = useOrderStore((state) => state.selectedOrderId)
 
     const { data: table } = useTableById(tableId);
+    const { data: order } = useOrderById(orderId);
+    const { data: orderItems } = useOrderItemByOrderId(orderId);
+
+    const sum = (a: number, b: number): number => a + b; 
+
+    const formatVNTime = (value?: string | Date | null, format?: string) => {
+        if (!value) return Strings[locale].text.blank;
+
+        const date = value instanceof Date ? value : new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return Strings[locale].text.blank;
+        }
+
+        return date.toLocaleString("vi-VN", format == Strings[locale].text.HHmm ? {
+            timeZone: "Asia/Ho_Chi_Minh",
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+        } : {
+            timeZone: "Asia/Ho_Chi_Minh",
+            hour12: false,
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+        });
+    };
+
+    const get
 
     return <DetailPanel sx={sx} title={table?.name || ''}>
         <BoxAtoms component={Component.header} sx={{
@@ -73,7 +109,7 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
                         component={"div"} >
                     </TextAtoms>
 
-                    <TimeHhMm time={"12:20"}
+                    <TimeHhMm time={formatVNTime(order?.createdAt, Strings[locale].text.HHmm)}
                         sx={{
                             fontSize: FontSize.large,
                         }}
@@ -109,7 +145,7 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
                     color={TextColor.textSecondary} >
                     {Strings[locale].text.tempCalculate}
                 </TextAtoms>
-                <Price price={100000} color={TextColor.textPrimary} sx={{
+                <Price price={1} color={TextColor.textPrimary} sx={{
                     fontSize: FontSize.large,
                     fontWeight: FontWeight.w600,
                 }} />
@@ -127,7 +163,7 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
                     color={TextColor.textSecondary} >
                     {Strings[locale].text.discount}
                 </TextAtoms>
-                <Price price={100000} isNegative={true} color={TextColor.error} sx={{
+                <Price price={0} isNegative={true} color={TextColor.error} sx={{
                     fontSize: FontSize.large,
                     fontWeight: FontWeight.w400,
                 }} />
@@ -146,7 +182,7 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
                     color={TextColor.textPrimary} >
                     {Strings[locale].text.total}
                 </TextAtoms>
-                <Price price={100000} isNegative={true} color={TextColor.primary} sx={{
+                <Price price={sum(10000, 1)} color={TextColor.primary} sx={{
                     fontSize: FontSize.x2large,
                     fontWeight: FontWeight.w600,
                 }} />

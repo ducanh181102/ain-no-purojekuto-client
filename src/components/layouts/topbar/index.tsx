@@ -21,7 +21,6 @@ export default function Topbar() {
 
   const locale: Locale = "vi";
 
-
   return (
     <BoxAtoms
       component={Component.header}

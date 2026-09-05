@@ -19,6 +19,8 @@ import { TablesClientProps } from "@/types/components/features/tables/tables-cli
 import CapacityGuest from "../../../common/molecules/capacity-guest";
 import StatusChip from "../../../common/molecules/status-chip";
 import TitleTable from "../../../common/molecules/title";
+import { useOrderStore } from "@/stores/useOrderStore";
+import { useOrderIdByTableId } from "@/hooks/queries/useOrders";
 
 // Component React
 // Props: tables from page.tsx
@@ -28,9 +30,12 @@ export default function TablesClient({ sx }: TablesClientProps) {
   const locale: Locale = "vi";
 
   const status = useTableStore((state) => state.selectedStatus) || "ALL"
+  const tableId = useTableStore((state) => state.selectedTableId)
+  const { data } = useOrderIdByTableId(tableId);
   const { data: tables = [], isLoading, isError } = useTableStatus(status);
 
   const setSelectedTableId = useTableStore((state) => state.setSelectedTableId)
+  const setSelectedOrderId = useOrderStore((state) => state.setSelectedOrderId)
   const { mutate: createOrder, isPending } = useCreateOrder()
 
   const handleCreateOrder = (tableId: number) => {
@@ -49,7 +54,10 @@ export default function TablesClient({ sx }: TablesClientProps) {
             <CardMolecule
               key={index}
               component={Component.article}
-              onClick={() => setSelectedTableId(table.id)}
+              onClick={() => {
+                setSelectedOrderId(data?.orderId)
+                setSelectedTableId(table.id)
+              }}
               sx={{
                 borderColor: SxColor.border,
                 borderRadius: BorderRadius.medium,

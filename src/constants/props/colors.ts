@@ -17,6 +17,8 @@ const Colors = {
     infoSoft: "#E5F2FF",
     defaultSoft: "#F0F5FA",
 
+    slateBlue: "#66788F",
+
     text: "#111827",
     textSecondary: "#6b7280",
 
@@ -91,6 +93,8 @@ export const SxColor = {
 
     backgroundItem: Colors.backgroundItem,
     background: Colors.background,
+
+    slateBlue: Colors.slateBlue,
 
     // border
     border: Colors.border,
