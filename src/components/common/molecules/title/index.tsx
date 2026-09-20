@@ -18,6 +18,6 @@ export default function Title({ title, sx }: TitleProps) {
     component={Component.h6}
     color={TextColor.textPrimary}
     align={TextAlign.center}
-    maxLength={MaxLength.xsmall}
+    maxLength={MaxLength.small}
     children={title}></TextAtoms>
 }

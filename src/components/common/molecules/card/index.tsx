@@ -8,6 +8,6 @@ export default function CardMolecule({ component, sx, onClick, children }: CardM
         onClick={onClick}
         sx={{
             ...sx,
-            bgcolor: SxColor.backgroundItem,
+            bgcolor: sx?.bgcolor != null ? sx.bgcolor : SxColor.backgroundItem,
         }}>{children}</BoxAtoms>
 }

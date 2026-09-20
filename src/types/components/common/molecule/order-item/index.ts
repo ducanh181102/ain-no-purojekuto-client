@@ -1,4 +1,5 @@
-import { UpperCaseTableStatusKey } from "@/types/keys";
+import { UpperCaseOrderItemStatusKey } from "@/types/keys";
+import { DishMoleculeProps } from "../dish";
 
 export type OrderItemMoleculeProps = {
     id: number;
@@ -6,12 +7,12 @@ export type OrderItemMoleculeProps = {
     dishId: number;
     quantity: number;
     price: number;
-    note: string,
-    status: UpperCaseTableStatusKey,
+    note?: string | null,
+    status: UpperCaseOrderItemStatusKey,
     isDeleted: string,
-    deleteAt: Date,
-    createdAt: Date,
-    updatedAt: Date,
+    deleteAt: string | null,
+    createdAt: string,
+    updatedAt: string,
+    dish?: DishMoleculeProps,
 }
-
 

@@ -20,6 +20,7 @@ import { CustomsZIndex, Inset, Overflow, OverflowY, Position, Top } from "./posi
 import { FontSize, NumSize } from "./sizes";
 import { MaxWidth, MinWidth, Width } from "./width";
 import { Cursor } from "./cursor";
+import { TextAlign } from "./aligns";
 
 export type Sx = {
   display?: Display,
@@ -38,6 +39,7 @@ export type Sx = {
   color?: SxColor,
   fontWeight?: FontWeight,
   fontSize?: FontSize,
+  textAlign?: TextAlign,
 
   // border
   borderColor?: SxColor,

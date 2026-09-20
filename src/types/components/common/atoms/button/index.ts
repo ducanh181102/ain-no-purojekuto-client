@@ -1,4 +1,5 @@
-import { ButtonColor, TextColor } from "@/types/app/props/colors";
+import type { MouseEventHandler } from "react";
+import { ButtonColor } from "@/types/app/props/colors";
 import { Sx } from "@/types/app/props/sx";
 import { ButtonVariant } from "@/types/app/props/variants";
 
@@ -8,4 +9,6 @@ export type ButtonAtomsProps = {
     variant: ButtonVariant,
     color?: ButtonColor,
     sx?: Sx,
+    disabled?: boolean,
+    onClick?: MouseEventHandler<HTMLButtonElement>,
 }

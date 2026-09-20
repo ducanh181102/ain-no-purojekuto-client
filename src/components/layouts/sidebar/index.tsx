@@ -14,15 +14,15 @@ import { FontWeight } from "@/constants/props/font-weights"
 import { Position, ZIndex } from "@/constants/props/position"
 import { BorderRadius, FontSize, Height, MinHeight, NumSize, Padding, Width } from "@/constants/props/sizes"
 import { TextVariant } from "@/constants/props/variants"
-import { Strings } from "@/constants/strings"
+import { getLocalText } from "@/lib/i18n"
 import { useSideBarStore } from "@/stores/useSideBarStore"
-import { Locale } from "@/types/app/locales"
+import { useUIStore } from "@/stores/useUIStore"
 import CircleIcon from '@mui/icons-material/Circle'
 import { usePathname } from "next/navigation"
 
 export default function SideBar() {
 
-    const locale: Locale = "vi";
+    const locale = useUIStore((state) => state.locale)
 
     const setSelectedStatus = useSideBarStore((status) => status.setSelectedSideBar);
     const sidebar = useSideBarStore((state) => state.selectedSideBar) || usePathname().replace(/^\//, "");;
@@ -30,49 +30,49 @@ export default function SideBar() {
     const sideBars = [
         {
             key: SideBarItem.dashboard,
-            label: Strings[locale].text.dashboard,
+            label: getLocalText().dashboard,
             isSelected: sidebar == SideBarItem.dashboard,
             onClick: () => {
                 setSelectedStatus(SideBarItem.dashboard)
             }
         }, {
             key: SideBarItem.tables,
-            label: Strings[locale].text.tables,
+            label: getLocalText().tables,
             isSelected: sidebar == SideBarItem.tables,
             onClick: () => {
                 setSelectedStatus(SideBarItem.tables)
             }
         }, {
             key: SideBarItem.orders,
-            label: Strings[locale].text.orders,
+            label: getLocalText().orders,
             isSelected: sidebar == SideBarItem.orders,
             onClick: () => {
                 setSelectedStatus(SideBarItem.orders)
             }
         }, {
             key: SideBarItem.menu,
-            label: Strings[locale].text.menu,
+            label: getLocalText().menu,
             isSelected: sidebar == SideBarItem.menu,
             onClick: () => {
                 setSelectedStatus(SideBarItem.menu)
             }
         }, {
             key: SideBarItem.kitchen,
-            label: Strings[locale].text.kitchen,
+            label: getLocalText().kitchen,
             isSelected: sidebar == SideBarItem.kitchen,
             onClick: () => {
                 setSelectedStatus(SideBarItem.kitchen)
             }
         }, {
             key: SideBarItem.payments,
-            label: Strings[locale].text.payments,
+            label: getLocalText().payments,
             isSelected: sidebar == SideBarItem.payments,
             onClick: () => {
                 setSelectedStatus(SideBarItem.payments)
             }
         }, {
             key: SideBarItem.reports,
-            label: Strings[locale].text.reports,
+            label: getLocalText().reports,
             isSelected: sidebar == SideBarItem.reports,
             onClick: () => {
                 setSelectedStatus(SideBarItem.reports)
@@ -106,7 +106,7 @@ export default function SideBar() {
                 component={Component.h1}
                 color={TextColor.textPrimary}
                 children={
-                    Strings[locale].text.kaiten
+                    getLocalText().kaiten
                 }
                 sx={{
                     fontWeight: FontWeight.w600,
@@ -118,7 +118,7 @@ export default function SideBar() {
                 component={Component.label}
                 color={TextColor.textSecondary}
                 children={
-                    Strings[locale].text.seafoodRestaurant
+                    getLocalText().seafoodRestaurant
                 }
                 sx={{
                     fontSize: FontSize.medium,

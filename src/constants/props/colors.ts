@@ -30,6 +30,8 @@ const Colors = {
 
     black: "#000000",
     white: "#ffffff",
+
+    icon: "#6F7F95",
 } as const;
 
 // string color value of MUI
@@ -91,13 +93,20 @@ export const SxColor = {
 
     blackBtn: Colors.black,
 
+    // background
     backgroundItem: Colors.backgroundItem,
     background: Colors.background,
+    bgSelected: Colors.primarySoft,
 
     slateBlue: Colors.slateBlue,
 
     // border
     border: Colors.border,
+    bdSelected: Colors.primary,
+
+    // icon
+    icon: Colors.icon,
+
 } as const;
 
 export const ChipColor = {

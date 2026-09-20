@@ -2,13 +2,11 @@
 
 import { SxColor, TextColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
+import { Position } from "@/constants/props/position";
 import { TextVariant } from "@/constants/props/variants";
 import { DetailPanelProps } from "@/types/components/common/organisms/detail-panel";
 import BoxAtoms from "../../atoms/box";
 import TextAtoms from "../../atoms/text";
-import { Display } from "@/constants/props/displays";
-import { Position } from "@/constants/props/position";
-import { NumSize } from "@/constants/props/sizes";
 
 export default function DetailPanel({ sx, title, children }: DetailPanelProps) {
 

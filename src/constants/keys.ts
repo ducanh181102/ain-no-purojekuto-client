@@ -48,3 +48,16 @@ export const UpperCaseOrderItemStatus = {
   served: "SERVED",
   cancelled: "CANCELLED",
 } as const;
+
+export const UpperCasePaymentMethod = {
+  cash: "CASH",
+  banking: "BANKING",
+  momo: "MOMO",
+} as const;
+
+export const UpperCaseReservationStatus = {
+  reserved: "RESERVED",
+  checkedIn: "CHECKED_IN",
+  cancelled: "CANCELLED",
+  expired: "EXPIRED",
+} as const;

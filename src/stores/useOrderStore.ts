@@ -1,4 +1,3 @@
-import { UpperCaseOrderStatusKey } from "@/types/keys"
 import { create } from "zustand"
 
 type OrderStore = {

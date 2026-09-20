@@ -18,7 +18,7 @@ export function useOrderById(id: number | null) {
 
 export function useOrderIdByTableId(tableId: number | null) {
     return useQuery({
-        queryKey: ["orders", tableId],
+        queryKey: ["orders", "current-order-id", tableId],
         queryFn: () => getOrderIdByTableId(tableId!),
         enabled: !!tableId, // chay api khi chac chan id ko null
     })
