@@ -1,7 +1,15 @@
-const StrSize = {
+export const StrSize = {
   small: "small",
   medium: "medium",
   large: "large",
+} as const
+
+export const MuiSize = {
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
 } as const
 
 export const NumSize = {
@@ -15,6 +23,9 @@ export const NumSize = {
   xlarge: 2,
 
   full: "100%",
+
+  // circle
+  circle: "50%",
 
   // space
   xsmallSpace: 1,
@@ -43,18 +54,19 @@ export const NumSize = {
   sideBarWidth: "15vw",
   topBarWidth: "85vw",
   filterBarWidth: "60vw",
-  detailPanelWidth: "25vw",
-  mainAreaWidth: "50vw",
+  detailPanelWidth: "20vw",
+  mainAreaWidth: "60vw",
 
   // Height App
   screenHeight: "100vh",
   topBarHeight: "9vh",
-  detailPanelHeight: "66vh",
+  detailPanelHeight: "70vh",
   mainAreaHeight: "91vh",
   toolBarHeight: "7vh",
-  tableClient: "64vh",
+  tableClient: "66vh",
 
   // Width Item
+  x2smallChipWidth: "60px",
   xsmallChipWidth: "120px",
   smallChipWidth: "140px",
   mediumChipWidth: "160px",
@@ -73,6 +85,11 @@ export const NumSize = {
   largeAvatarWidth: "128px",
   xlargeAvatarWidth: "256px",
 
+  // icon
+  smallIcon: "32px",
+  mediumIcon: "48px",
+  largeIcon: "64px",
+  xlargeIcon: "72px",
 
   // Height Item
   xsmallChipHeight: "8px",
@@ -204,6 +221,12 @@ export const Height = {
   inputMedium: NumSize.mediumInputHeight,
   inputLarge: NumSize.largeInputHeight,
 
+  // icon
+  iconSmall: NumSize.smallIcon,
+  iconMedium: NumSize.mediumIcon,
+  iconLarge: NumSize.largeIcon,
+  iconXLarge: NumSize.xlargeIcon,
+
 } as const;
 
 export const Width = {
@@ -217,6 +240,7 @@ export const Width = {
   full: NumSize.full,
 
   // chip
+  chipX2Small: NumSize.x2smallChipWidth,
   chipXSmall: NumSize.xsmallChipWidth,
   chipSmall: NumSize.smallChipWidth,
   chipMedium: NumSize.mediumChipWidth,
@@ -240,6 +264,12 @@ export const Width = {
   cardLarge: NumSize.largeCardWidth,
   cardXlarge: NumSize.xlargeCardWidth,
 
+  // icon
+  iconSmall: NumSize.smallIcon,
+  iconMedium: NumSize.mediumIcon,
+  iconLarge: NumSize.largeIcon,
+  iconXLarge: NumSize.xlargeIcon,
+
 } as const;
 
 export const MaxWidth = {
@@ -259,6 +289,14 @@ export const MaxWidth = {
   avatarMedium: NumSize.mediumAvatarWidth,
   avatarLarge: NumSize.largeAvatarWidth,
   avatarXlarge: NumSize.xlargeAvatarWidth,
+
+  // space
+  xsmallSpace: NumSize.xsmallSpace,
+  smallSpace: NumSize.smallSpace,
+  mediumSpace: NumSize.mediumSpace,
+  largeSpace: NumSize.largeSpace,
+  xlargeSpace: NumSize.xlargeSpace,
+
 } as const;
 
 export const MinWidth = {
@@ -334,8 +372,11 @@ export const BorderRadius = {
   small: NumSize.small,
   medium: NumSize.medium,
   large: NumSize.large,
-  xlarge: NumSize.large,
-}
+  xlarge: NumSize.xlarge,
+
+  // circel
+  circel: NumSize.circle,
+} as const;
 
 export const FontSize = {
   small: NumSize.smallFontSize,
@@ -344,6 +385,13 @@ export const FontSize = {
   xlarge: NumSize.xlargeFontSize,
   x2large: NumSize.x2largeFontSize,
   x3large: NumSize.x3largeFontSize,
-  
-}
+
+} as const;
+
+export const Spacing = {
+  xsmall: NumSize.xsmall,
+  medium: NumSize.medium,
+  large: NumSize.large,
+  xlarge: NumSize.xlarge,
+} as const;
 

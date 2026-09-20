@@ -1,3 +1,5 @@
 import { InputProps } from "@mui/material/Input";
+import { TextFieldProps } from "@mui/material/TextField";
 
-export type SlotProps = InputProps["slotProps"]
+export type InputSlotProps = InputProps["slotProps"]
+export type TextFieldSlotProps = TextFieldProps["slotProps"]

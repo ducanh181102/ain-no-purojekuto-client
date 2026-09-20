@@ -21,7 +21,7 @@ export default function TableFilter() {
     const {data: reservedCount = 0} = useStatusReservedTableCount();
 
     const setSelectedStatus = useTableStore((status) => status.setSelectedStatus);
-    const status = useTableStore((state) => state.selectedStatus) || "ALL"
+    const status = useTableStore((state) => state.selectedStatus) || UpperCaseTableStatus.all
 
     const tableStatuses: FilterTableStatus[] = [
         {

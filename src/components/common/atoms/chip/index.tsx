@@ -14,6 +14,7 @@ export default function ChipAtoms({ variant, icon, color, label, sx, onClick }: 
         sx={{
             ...sx,
         }}
+        clickable={onClick ? true : false}
         onClick={handleClick}
     />
 }

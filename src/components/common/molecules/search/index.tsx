@@ -4,13 +4,18 @@ import InputAtoms from "@/components/common/atoms/input";
 import { BorderStyle, BorderWidth } from "@/constants/props/borders";
 import { SxColor } from "@/constants/props/colors";
 import { BorderRadius, Height, MaxLength, Padding, Width } from "@/constants/props/sizes";
-import { Strings } from "@/constants/strings";
-import { Locale } from "@/types/app/locales";
+import { getLocalText } from "@/lib/i18n";
+import { useUIStore } from "@/stores/useUIStore";
+import type { ChangeEventHandler } from "react";
 
+type SearchProps = {
+    value?: string,
+    onChange?: ChangeEventHandler<HTMLInputElement>,
+}
 
-export default function Search() {
+export default function Search({ value, onChange }: SearchProps) {
 
-    const locale: Locale = "vi";
+    const locale = useUIStore((state) => state.locale)
 
     return <InputAtoms sx={{
         bgcolor: SxColor.backgroundItem,
@@ -26,7 +31,7 @@ export default function Search() {
         height: Height.inputMedium,
 
 
-    }} placeholder={Strings[locale].text.searchTableInput} slotProps={{
+    }} placeholder={getLocalText().searchTableInput} value={value} onChange={onChange} slotProps={{
         input: {
             maxLength: MaxLength.medium,
         }

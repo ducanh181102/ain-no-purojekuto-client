@@ -6,12 +6,12 @@ import { TextColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
 import { FontWeight } from "@/constants/props/font-weights";
 import { TextVariant } from "@/constants/props/variants";
-import { Strings } from "@/constants/strings";
-import { Locale } from "@/types/app/locales";
+import { getLocalText } from "@/lib/i18n";
+import { useUIStore } from "@/stores/useUIStore";
 import { CapacityGuestProps } from "@/types/components/common/molecule/capacity-guest";
 
 export default function CapacityGuest({ capacity, sx }: CapacityGuestProps) {
-  const locale: Locale = "vi";
+  const locale = useUIStore((state) => state.locale)
 
   return <TextAtoms variant={TextVariant.caption}
     component={Component.label} color={TextColor.textSecondary}
@@ -22,6 +22,6 @@ export default function CapacityGuest({ capacity, sx }: CapacityGuestProps) {
     }}
     children={
       `${capacity} 
-          ${Strings[locale].text.guest}`
+          ${getLocalText().guest}`
     }></TextAtoms>
 }

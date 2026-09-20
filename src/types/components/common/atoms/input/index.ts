@@ -1,9 +1,10 @@
 import { TextAlign } from "@/types/app/props/aligns";
 import { TextColor } from "@/types/app/props/colors";
 import { Component } from "@/types/app/props/components";
-import { SlotProps } from "@/types/app/props/slot-props";
+import { InputSlotProps } from "@/types/app/props/slot-props";
 import { Sx } from "@/types/app/props/sx";
 import { TextVariant } from "@/types/app/props/variants";
+import type { ChangeEventHandler } from "react";
 
 //? & dùng để gộp type
 export type InputAtomsProps = {
@@ -13,6 +14,8 @@ export type InputAtomsProps = {
     color?: TextColor,
     align?: TextAlign,
     sx?: Sx,
-    slotProps?: SlotProps,
-    maxLength?: number
+    slotProps?: InputSlotProps,
+    maxLength?: number,
+    value?: string,
+    onChange?: ChangeEventHandler<HTMLInputElement>,
 }

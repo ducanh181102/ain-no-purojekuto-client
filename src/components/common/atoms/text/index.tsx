@@ -1,15 +1,13 @@
-import { Strings } from "@/constants/strings";
-import { Locale } from "@/types/app/locales";
+import { getLocalText } from "@/lib/i18n";
+import { useUIStore } from "@/stores/useUIStore";
 import { TextAtomsProps } from "@/types/components/common/atoms/text";
 import { Typography } from "@mui/material";
 
-
-
 export default function TextAtoms({ variant, component, color, align, sx, maxLength, children }: TextAtomsProps) {
     const limitText = (text: string, maxLength: number) => {
-        const locale: Locale = "vi";
+        const locale = useUIStore((state) => state.locale)
 
-        const sliceString = text.slice(0, maxLength) + Strings[locale].text.threeDot;
+        const sliceString = text.slice(0, maxLength) + getLocalText().threeDot;
         return sliceString;
     }
 

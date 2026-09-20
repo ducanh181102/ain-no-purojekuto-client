@@ -12,3 +12,52 @@ export const UpperCaseTableStatus = {
   reserved: "RESERVED",
 } as const;
 
+export const OrderStatus = {
+  pending: "pending",
+  confirmed: "confirmed",
+  preparing: "preparing",
+  served: "served",
+  paid: "paid",
+  cancelled: "cancelled",
+} as const;
+
+export const UpperCaseOrderStatus = {
+  pending: "PENDING",
+  confirmed: "CONFIRMED",
+  preparing: "PREPARING",
+  served: "SERVED",
+  paid: "PAID",
+  cancelled: "CANCELLED",
+} as const;
+
+export const SideBarItem = {
+  dashboard: "dashboard",
+  tables: "tables",
+  orders: "orders",
+  menu: "menu",
+  kitchen: "kitchen",
+  payments: "payments",
+  reports: "reports",
+} as const;
+
+export const UpperCaseOrderItemStatus = {
+  pending: "PENDING",
+  confirmed: "CONFIRMED",
+  cooking: "COOKING",
+  ready: "READY",
+  served: "SERVED",
+  cancelled: "CANCELLED",
+} as const;
+
+export const UpperCasePaymentMethod = {
+  cash: "CASH",
+  banking: "BANKING",
+  momo: "MOMO",
+} as const;
+
+export const UpperCaseReservationStatus = {
+  reserved: "RESERVED",
+  checkedIn: "CHECKED_IN",
+  cancelled: "CANCELLED",
+  expired: "EXPIRED",
+} as const;

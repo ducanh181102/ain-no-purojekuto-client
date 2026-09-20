@@ -13,8 +13,9 @@ import { BorderRadius, FontSize, MinHeight, NumSize, Padding } from "@/constants
 import { ChipVariant } from "@/constants/props/variants";
 import { useCreateOrder } from "@/hooks/mutations/useCreateOrder";
 import { useTableStatus } from "@/hooks/queries/useTables";
+import { getLocalText } from "@/lib/i18n";
 import { useTableStore } from "@/stores/useTableStore";
-import { Locale } from "@/types/app/locales";
+import { useUIStore } from "@/stores/useUIStore";
 import { TablesClientProps } from "@/types/components/features/tables/tables-client";
 import CapacityGuest from "../../../common/molecules/capacity-guest";
 import StatusChip from "../../../common/molecules/status-chip";
@@ -25,36 +26,38 @@ import TitleTable from "../../../common/molecules/title";
 // Return: component 
 // Logic: build component combine click handle action
 export default function TablesClient({ sx }: TablesClientProps) {
-  const locale: Locale = "vi";
+  const locale = useUIStore((state) => state.locale)
 
   const status = useTableStore((state) => state.selectedStatus) || "ALL"
+  const searchKeyword = useTableStore((state) => state.searchKeyword)
   const { data: tables = [], isLoading, isError } = useTableStatus(status);
 
   const setSelectedTableId = useTableStore((state) => state.setSelectedTableId)
-  const { mutate: createOrder, isPending } = useCreateOrder()
+  const selectedTableId = useTableStore((state) => state.selectedTableId)
+  const { mutate: createOrder } = useCreateOrder()
 
-  const handleCreateOrder = (tableId: number) => {
-    createOrder(
-      tableId,
-    )
-  }
+  const filteredTables = tables.filter((table) =>
+    table.name.toLowerCase().includes(searchKeyword.trim().toLowerCase())
+  )
 
   return (
     <BoxAtoms component={Component.main}
       isHideScroll={true}
       sx={sx}>
       {isLoading ?
-        <TextAtoms component={"div"}>Dang Tai...</TextAtoms> : isError ?
-          <TextAtoms component={"div"}>Loi tai ban</TextAtoms> : tables.map((table, index) => (
+        <TextAtoms component={"div"}>{getLocalText().loading}</TextAtoms> : isError ?
+          <TextAtoms component={"div"}>{getLocalText().fetchTablesError}</TextAtoms> : filteredTables.map((table, index) => (
             <CardMolecule
               key={index}
               component={Component.article}
               onClick={() => setSelectedTableId(table.id)}
               sx={{
-                borderColor: SxColor.border,
+                borderColor: selectedTableId == table?.id ? SxColor.bdSelected : SxColor.border,
                 borderRadius: BorderRadius.medium,
                 borderStyle: BorderStyle.solid,
-                borderWidth: BorderWidth.mediumBorder,
+                borderWidth: selectedTableId == table?.id ? BorderWidth.largeBorder : BorderWidth.mediumBorder,
+
+                bgcolor: selectedTableId == table?.id ? SxColor.bgSelected : SxColor.backgroundItem,
 
                 display: Display.flex,
                 flexDirection: FlexDirection.column,
@@ -72,7 +75,7 @@ export default function TablesClient({ sx }: TablesClientProps) {
               <CapacityGuest capacity={table.capacity}></CapacityGuest>
               <StatusChip status={table.status}
                 variant={ChipVariant.outlined} onClick={() =>
-                  handleCreateOrder(table.id)
+                  createOrder(table.id)
                 }
                 sx={{
                   display: Display.flex,

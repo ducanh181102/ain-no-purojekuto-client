@@ -15,12 +15,11 @@ import { Position, ZIndex } from "@/constants/props/position";
 import { MinHeight, NumSize, Width } from "@/constants/props/sizes";
 import { TextVariant } from "@/constants/props/variants";
 import { Strings } from "@/constants/strings";
-import { Locale } from "@/types/app/locales";
+import { useUIStore } from "@/stores/useUIStore";
 
 export default function Topbar() {
 
-  const locale: Locale = "vi";
-
+  const locale = useUIStore((state) => state.locale)
 
   return (
     <BoxAtoms
