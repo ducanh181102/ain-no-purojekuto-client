@@ -14,12 +14,9 @@ import { FontWeight } from "@/constants/props/font-weights";
 import { Position, ZIndex } from "@/constants/props/position";
 import { MinHeight, NumSize, Width } from "@/constants/props/sizes";
 import { TextVariant } from "@/constants/props/variants";
-import { Strings } from "@/constants/strings";
-import { useUIStore } from "@/stores/useUIStore";
+import { TopBarProps } from "@/types/components/layouts/topbar";
 
-export default function Topbar() {
-
-  const locale = useUIStore((state) => state.locale)
+export default function Topbar({ title }: TopBarProps) {
 
   return (
     <BoxAtoms
@@ -49,7 +46,7 @@ export default function Topbar() {
         component={Component.h1}
         color={TextColor.textPrimary}
         children={
-          Strings[locale].tableManagementPage.title
+          title
         }
         sx={{
           fontWeight: FontWeight.w600,

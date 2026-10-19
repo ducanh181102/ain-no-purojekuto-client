@@ -2,12 +2,12 @@
 
 import ButtonAtoms from "@/components/common/atoms/button";
 import LineAtoms from "@/components/common/atoms/line";
+import StackAtoms from "@/components/common/atoms/stack";
 import TextAtoms from "@/components/common/atoms/text";
 import DialogMolecule from "@/components/common/molecules/dialog";
 import DialogActionsMolecule from "@/components/common/molecules/dialog-actions";
 import DialogContentMolecule from "@/components/common/molecules/dialog-content";
 import DialogTitleMolecule from "@/components/common/molecules/dialog-title";
-import StackMolecule from "@/components/common/molecules/stack";
 import { TableDetail } from "@/constants/actions";
 import { UpperCaseTableStatus } from "@/constants/keys";
 import { Null } from "@/constants/null";
@@ -51,47 +51,47 @@ export default function ViewOrderDialog({ setActiveAction, activeAction }: ViewO
     const formatMoney = (value?: number | string | null) => {
         const amount = Number(value ?? Numbers.zero);
         const safeAmount = Number.isFinite(amount) ? amount : Numbers.zero;
-        return `${safeAmount.toLocaleString(getLocalText().numberLocale)} ${getLocalText().currencySuffix}`;
+        return `${safeAmount.toLocaleString(getLocalText().text.numberLocale)} ${getLocalText().text.currencySuffix}`;
     };
 
     return <>
         <DialogMolecule open={activeAction === TableDetail.viewOrder} onClose={closeDialog} maxWidth={MuiSize.sm}>
-            <DialogTitleMolecule>{`${getLocalText().orders} ${table?.name ?? Strings.vi.text.blank}`}</DialogTitleMolecule>
+            <DialogTitleMolecule>{`${getLocalText().text.orders} ${table?.name ?? Strings.vi.text.blank}`}</DialogTitleMolecule>
             <DialogContentMolecule>
                 {!hasCurrentOrder ? (
-                    <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().noCurrentOrder}</TextAtoms>
+                    <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().text.noCurrentOrder}</TextAtoms>
                 ) : (
-                    <StackMolecule spacing={Spacing.xlarge}>
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().orderCode}</TextAtoms>
+                    <StackAtoms spacing={Spacing.xlarge}>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().text.orderCode}</TextAtoms>
                             <TextAtoms sx={{ fontWeight: FontWeight.w600 }} component={Component.div}>{`#${currentOrderId}`}</TextAtoms>
-                        </StackMolecule>
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().status}</TextAtoms>
-                            <TextAtoms sx={{ fontWeight: FontWeight.w600 }} component={Component.div}>{order?.status ?? getLocalText().blank}</TextAtoms>
-                        </StackMolecule>
+                        </StackAtoms>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().text.status}</TextAtoms>
+                            <TextAtoms sx={{ fontWeight: FontWeight.w600 }} component={Component.div}>{order?.status ?? getLocalText().text.blank}</TextAtoms>
+                        </StackAtoms>
                         {orderItems.length ? orderItems.map((item) => (
-                            <StackMolecule key={item.id} spacing={Spacing.xsmall}>
-                                <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween, gap: Gap.small }}>
-                                    <TextAtoms sx={{ fontWeight: FontWeight.w600 }} component={Component.div}>{item.dish?.name ?? `${getLocalText().dishCodePrefix}${item.dishId}`}</TextAtoms>
+                            <StackAtoms key={item.id} spacing={Spacing.xsmall}>
+                                <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween, gap: Gap.small }}>
+                                    <TextAtoms sx={{ fontWeight: FontWeight.w600 }} component={Component.div}>{item.dish?.name ?? `${getLocalText().text.dishCodePrefix}${item.dishId}`}</TextAtoms>
                                     <TextAtoms sx={{ fontWeight: FontWeight.w600 }} component={Component.div}>{formatMoney(item.price * item.quantity)}</TextAtoms>
-                                </StackMolecule>
-                                <TextAtoms color={TextColor.textSecondary} component={Component.div}>{`${getLocalText().quantityShort}: ${item.quantity} x ${formatMoney(item.price)} - ${item.status}`}</TextAtoms>
-                                {item.note ? <TextAtoms color={TextColor.textSecondary} component={Component.div}>{`${getLocalText().note}: ${item.note}`}</TextAtoms> : Null}
-                            </StackMolecule>
+                                </StackAtoms>
+                                <TextAtoms color={TextColor.textSecondary} component={Component.div}>{`${getLocalText().text.quantityShort}: ${item.quantity} x ${formatMoney(item.price)} - ${item.status}`}</TextAtoms>
+                                {item.note ? <TextAtoms color={TextColor.textSecondary} component={Component.div}>{`${getLocalText().text.note}: ${item.note}`}</TextAtoms> : Null}
+                            </StackAtoms>
                         )) : (
-                            <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().noOrderItems}</TextAtoms>
+                            <TextAtoms color={TextColor.textSecondary} component={Component.div}>{getLocalText().text.noOrderItems}</TextAtoms>
                         )}
                         <LineAtoms orientation={Orientation.horizontal} />
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms sx={{ fontWeight: FontWeight.w700 }} component={Component.div}>{getLocalText().total}</TextAtoms>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms sx={{ fontWeight: FontWeight.w700 }} component={Component.div}>{getLocalText().text.total}</TextAtoms>
                             <TextAtoms color={TextColor.primary} sx={{ fontWeight: FontWeight.w700 }} component={Component.div}>{formatMoney(totalAmount)}</TextAtoms>
-                        </StackMolecule>
-                    </StackMolecule>
+                        </StackAtoms>
+                    </StackAtoms>
                 )}
             </DialogContentMolecule>
             <DialogActionsMolecule>
-                <ButtonAtoms onClick={closeDialog} variant={ButtonVariant.text}>{getLocalText().close}</ButtonAtoms>
+                <ButtonAtoms onClick={closeDialog} variant={ButtonVariant.text}>{getLocalText().text.close}</ButtonAtoms>
             </DialogActionsMolecule>
         </DialogMolecule>
     </>

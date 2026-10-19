@@ -12,11 +12,9 @@ import { BorderRadius } from "@/constants/props/sizes";
 import { ButtonVariant } from "@/constants/props/variants";
 import { useCreateOrder } from "@/hooks/mutations/useCreateOrder";
 import { getLocalText } from "@/lib/i18n";
-import { useUIStore } from "@/stores/useUIStore";
 import { AvailableFooterPanelProps } from "@/types/components/features/tables/table-detail-panel/available/footer-panel";
 
 export default function AvailableFooterPanel({ setActiveAction, tableId }: AvailableFooterPanelProps) {
-    const locale = useUIStore((state) => state.locale)
     const { mutate: createOrder } = useCreateOrder()
 
     return <>
@@ -27,7 +25,7 @@ export default function AvailableFooterPanel({ setActiveAction, tableId }: Avail
         }}>
             <ButtonAtoms
                 variant={ButtonVariant.contained}
-                children={getLocalText().openTable}
+                children={getLocalText().text.openTable}
                 onClick={() => {
                     tableId && createOrder(tableId)
                 }}
@@ -44,7 +42,7 @@ export default function AvailableFooterPanel({ setActiveAction, tableId }: Avail
             }}
                 onClick={() => setActiveAction(TableDetail.reserveTable)}
                 variant={ButtonVariant.outlined}
-                children={getLocalText().reserveTable}
+                children={getLocalText().text.reserveTable}
             />
         </BoxAtoms>
     </>

@@ -17,15 +17,17 @@ export default function DetailPanel({ sx, title, children }: DetailPanelProps) {
         ...sx,
         bgcolor: SxColor.backgroundItem,
     }}>
-        <TextAtoms color={TextColor.textPrimary}
-            variant={TextVariant.h6} component={Component.div}
-            sx={{
-                position: Position.absolute,
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-            }}
-            children={title}>
-        </TextAtoms>
+        {title && (
+            <TextAtoms color={TextColor.textPrimary}
+                variant={TextVariant.h6} component={Component.div}
+                sx={{
+                    position: Position.absolute,
+                    fontSize: fontSize,
+                    fontWeight: fontWeight,
+                }}
+                children={title}>
+            </TextAtoms>)
+        }
         {children}
     </BoxAtoms>
 }

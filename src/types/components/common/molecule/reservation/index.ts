@@ -1,7 +1,7 @@
 
 import { UpperCaseReservationStatusKey } from "@/types/keys";
-import { OrderMoleculeProps } from "../order";
-import { TableMoleculeProps } from "../table";
+import { OrderProps } from "../../../features/orders/order";
+import { TableProps } from "../../../features/tables";
 
 export type ReservationMoleculeProps = {
   id: number;
@@ -17,6 +17,6 @@ export type ReservationMoleculeProps = {
   deleteAt: string | null;
   createdAt: string;
   updatedAt: string;
-  table?: TableMoleculeProps;
-  order?: OrderMoleculeProps | null;
+  table?: TableProps;
+  order?: OrderProps | null;
 }

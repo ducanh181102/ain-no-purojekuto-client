@@ -20,7 +20,7 @@ export function useTableById(id: number | null) {
 
 function useTableCount(status?: UpperCaseTableStatusKey) {
   return useQuery({
-    queryKey: ["tables", "count", status ?? "all"],
+    queryKey: ["tables"],
     queryFn: getTables,
     select: (tables) => {
       if (!status) return tables.length

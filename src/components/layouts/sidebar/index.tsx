@@ -16,66 +16,71 @@ import { BorderRadius, FontSize, Height, MinHeight, NumSize, Padding, Width } fr
 import { TextVariant } from "@/constants/props/variants"
 import { getLocalText } from "@/lib/i18n"
 import { useSideBarStore } from "@/stores/useSideBarStore"
-import { useUIStore } from "@/stores/useUIStore"
 import CircleIcon from '@mui/icons-material/Circle'
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function SideBar() {
 
-    const locale = useUIStore((state) => state.locale)
-
+    const router = useRouter();
     const setSelectedStatus = useSideBarStore((status) => status.setSelectedSideBar);
-    const sidebar = useSideBarStore((state) => state.selectedSideBar) || usePathname().replace(/^\//, "");;
+    const sidebar = useSideBarStore((state) => state.selectedSideBar) || usePathname().replace(/^\//, "");
 
     const sideBars = [
         {
-            key: SideBarItem.dashboard,
-            label: getLocalText().dashboard,
-            isSelected: sidebar == SideBarItem.dashboard,
+            key: SideBarItem.home,
+            label: getLocalText().text.home,
+            isSelected: sidebar == SideBarItem.home,
             onClick: () => {
-                setSelectedStatus(SideBarItem.dashboard)
+                setSelectedStatus(SideBarItem.home)
+                router.push('/' + SideBarItem.home)
             }
         }, {
             key: SideBarItem.tables,
-            label: getLocalText().tables,
+            label: getLocalText().text.tables,
             isSelected: sidebar == SideBarItem.tables,
             onClick: () => {
                 setSelectedStatus(SideBarItem.tables)
+                router.push('/' + SideBarItem.tables)
             }
         }, {
             key: SideBarItem.orders,
-            label: getLocalText().orders,
+            label: getLocalText().text.orders,
             isSelected: sidebar == SideBarItem.orders,
             onClick: () => {
                 setSelectedStatus(SideBarItem.orders)
+                router.push('/' + SideBarItem.orders)
             }
         }, {
             key: SideBarItem.menu,
-            label: getLocalText().menu,
+            label: getLocalText().text.menu,
             isSelected: sidebar == SideBarItem.menu,
             onClick: () => {
                 setSelectedStatus(SideBarItem.menu)
+                router.push('/' + SideBarItem.menu)
             }
         }, {
             key: SideBarItem.kitchen,
-            label: getLocalText().kitchen,
+            label: getLocalText().text.kitchen,
             isSelected: sidebar == SideBarItem.kitchen,
             onClick: () => {
                 setSelectedStatus(SideBarItem.kitchen)
+                router.push('/' + SideBarItem.kitchen)
             }
         }, {
             key: SideBarItem.payments,
-            label: getLocalText().payments,
+            label: getLocalText().text.payments,
             isSelected: sidebar == SideBarItem.payments,
             onClick: () => {
                 setSelectedStatus(SideBarItem.payments)
+                router.push('/' + SideBarItem.payments)
             }
         }, {
             key: SideBarItem.reports,
-            label: getLocalText().reports,
+            label: getLocalText().text.reports,
             isSelected: sidebar == SideBarItem.reports,
             onClick: () => {
                 setSelectedStatus(SideBarItem.reports)
+                router.push('/' + SideBarItem.reports)
             }
         }
     ]
@@ -106,7 +111,7 @@ export default function SideBar() {
                 component={Component.h1}
                 color={TextColor.textPrimary}
                 children={
-                    getLocalText().kaiten
+                    getLocalText().text.kaiten
                 }
                 sx={{
                     fontWeight: FontWeight.w600,
@@ -118,7 +123,7 @@ export default function SideBar() {
                 component={Component.label}
                 color={TextColor.textSecondary}
                 children={
-                    getLocalText().seafoodRestaurant
+                    getLocalText().text.seafoodRestaurant
                 }
                 sx={{
                     fontSize: FontSize.medium,

@@ -10,17 +10,19 @@ const Colors = {
     default: "#e0e0e0",
 
     primarySoft: "#E5F2FF",
-    secondarySoft: "#9c27b0",
+    secondarySoft: "#F3E5F5",
     successSoft: "#E3FAEB",
-    errorSoft: "#d32f2f",
+    errorSoft: "#FFE5E5",
     warningSoft: "#FFF2DB",
-    infoSoft: "#E5F2FF",
+    infoSoft: "#E5F3FA",
     defaultSoft: "#F0F5FA",
 
     slateBlue: "#66788F",
 
     text: "#111827",
     textSecondary: "#6b7280",
+    textDisabled: "#9ca3af",
+    textInfoHover: '#0d47a1',
 
     background: "#F5FAFF",
     backgroundItem: "#FFFFFF",
@@ -56,6 +58,7 @@ const MuiColors = {
     txTextPrimary: 'textPrimary',
     txTextSecondary: 'textSecondary',
     txTextDisabled: 'textDisabled',
+    inherit: 'inherit',
 } as const;
 
 // string color value of badge
@@ -83,6 +86,17 @@ export const SxColor = {
     info: Colors.info,
     default: Colors.default,
 
+    // text
+    successText: Colors.success,
+    warningText: Colors.warning,
+    primaryText: Colors.primary,
+    secondaryText: Colors.secondary,
+    errorText: Colors.error,
+    infoText: Colors.info,
+    defaultText: Colors.default,
+    textInfoHover: Colors.textInfoHover,
+    blackText: Colors.text,
+
     successSoft: Colors.successSoft,
     warningSoft: Colors.warningSoft,
     primarySoft: Colors.primarySoft,
@@ -92,6 +106,7 @@ export const SxColor = {
     defaultSoft: Colors.defaultSoft,
 
     blackBtn: Colors.black,
+    redBtn: Colors.error,
 
     // background
     backgroundItem: Colors.backgroundItem,
@@ -103,6 +118,7 @@ export const SxColor = {
     // border
     border: Colors.border,
     bdSelected: Colors.primary,
+    bdCancel: Colors.error,
 
     // icon
     icon: Colors.icon,
@@ -138,21 +154,7 @@ export const ButtonColor = {
     error: MuiColors.txError,
     info: MuiColors.txInfo,
     warning: MuiColors.txWarning,
-    default: MuiColors.txDefault,
-} as const;
-
-export const ColorTableStatus = {
-  all: MuiColors.info,
-  available: MuiColors.success,
-  occupied: MuiColors.warning,
-  reserved: MuiColors.default,
-} as const;
-
-export const BgColorTableStatus = {
-  all: Colors.infoSoft,
-  available: Colors.successSoft,
-  occupied: Colors.warningSoft,
-  reserved: Colors.defaultSoft,
+    inherit: MuiColors.inherit,
 } as const;
 
 export const InputColor = {
@@ -164,3 +166,57 @@ export const InputColor = {
     secondary: MuiColors.secondary,
     error: MuiColors.error,
 }
+
+export const ColorTableStatus = {
+    all: MuiColors.info,
+    available: MuiColors.success,
+    occupied: MuiColors.warning,
+    reserved: MuiColors.default,
+} as const;
+
+export const BgColorTableStatus = {
+    all: Colors.infoSoft,
+    available: Colors.successSoft,
+    occupied: Colors.warningSoft,
+    reserved: Colors.defaultSoft,
+} as const;
+
+export const ColorOrderStatus = {
+    all: MuiColors.info,
+    pending: MuiColors.warning,
+    confirmed: MuiColors.primary,
+    preparing: MuiColors.success,
+    served: MuiColors.secondary,
+    paid: MuiColors.default,
+    cancelled: MuiColors.error,
+} as const;
+
+export const BgColorOrderStatus = {
+    all: Colors.infoSoft,
+    pending: Colors.warningSoft,
+    confirmed: Colors.primarySoft,
+    preparing: Colors.successSoft,
+    served: Colors.secondarySoft,
+    paid: Colors.defaultSoft,
+    cancelled: Colors.errorSoft,
+} as const;
+
+export const ColorOrderItemStatus = {
+    all: MuiColors.info,
+    pending: MuiColors.warning,
+    confirmed: MuiColors.primary,
+    cooking: MuiColors.info,
+    served: MuiColors.success,
+    ready: MuiColors.success,
+    cancelled: MuiColors.error,
+} as const;
+
+export const BgColorOrderItemStatus = {
+    all: Colors.infoSoft,
+    pending: Colors.warningSoft,
+    confirmed: Colors.primarySoft,
+    cooking: Colors.infoSoft,
+    served: Colors.successSoft,
+    ready: Colors.successSoft,
+    cancelled: Colors.errorSoft,
+} as const;

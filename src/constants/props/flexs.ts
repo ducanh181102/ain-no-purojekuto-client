@@ -160,6 +160,10 @@ export const FlexShrink = {
 export const Gap = {
   none: 0,
 
+  x3Small: NumSize.x3smallSpace,
+
+  x2Small: NumSize.x2smallSpace,
+
   xSmall: NumSize.xsmallSpace,
 
   small: NumSize.smallSpace,

@@ -25,9 +25,9 @@ export default function UserAvatarMolecule({ }:
         <AvatarAtoms sx={{
             height: Height.avatarSmall,
             width: Width.avatarSmall,
-        }} children={getLocalText().admin.charAt(0)}></AvatarAtoms>
+        }} children={getLocalText().text.admin.charAt(0)}></AvatarAtoms>
         <TextAtoms variant={TextVariant.caption}
-            children={getLocalText().admin}
+            children={getLocalText().text.admin}
             component={Component.label}
             align={TextAlign.center}
             color={TextColor.textSecondary}

@@ -1,21 +1,17 @@
 import {
-  OrderStatus,
+  LowerCaseOrderStatus,
   SideBarItem,
-  TableStatus,
   UpperCaseOrderItemStatus,
   UpperCaseOrderStatus,
   UpperCaseReservationStatus,
   UpperCaseTableStatus,
 } from "@/constants/keys";
 
-export type TableStatusKey =
-  typeof TableStatus[keyof typeof TableStatus];
-
 export type UpperCaseTableStatusKey =
   typeof UpperCaseTableStatus[keyof typeof UpperCaseTableStatus];
 
-export type OrderStatusKey =
-  typeof OrderStatus[keyof typeof OrderStatus];
+export type LowerCaseOrderStatusKey =
+  typeof LowerCaseOrderStatus[keyof typeof LowerCaseOrderStatus];
 
 export type UpperCaseOrderStatusKey =
   typeof UpperCaseOrderStatus[keyof typeof UpperCaseOrderStatus];

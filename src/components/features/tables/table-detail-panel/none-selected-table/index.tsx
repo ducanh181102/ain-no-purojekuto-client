@@ -51,7 +51,7 @@ export default function NoneSelectedTable() {
                     fontWeight: 700,
                 }}
             >
-                {getLocalText().noSelectedTableTitle}
+                {getLocalText().text.noSelectedTableTitle}
             </TextAtoms>
             <TextAtoms
                 component={Component.div}
@@ -61,7 +61,7 @@ export default function NoneSelectedTable() {
                     textAlign: TextAlign.center,
                 }}
             >
-                {getLocalText().noSelectedTableDescription}
+                {getLocalText().text.noSelectedTableDescription}
             </TextAtoms>
             <BoxAtoms component={Component.div} sx={{
                 display: Display.flex,
@@ -86,7 +86,7 @@ export default function NoneSelectedTable() {
                     color={TextColor.textSecondary}
 
                 >
-                    {getLocalText().chooseTableFromList}
+                    {getLocalText().text.chooseTableFromList}
                 </TextAtoms>
             </BoxAtoms>
         </BoxAtoms>

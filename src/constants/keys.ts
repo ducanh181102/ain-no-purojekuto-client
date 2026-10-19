@@ -1,4 +1,4 @@
-export const TableStatus = {
+export const LowerCaseTableStatus = {
   all: "all",
   available: "available",
   occupied: "occupied",
@@ -12,7 +12,8 @@ export const UpperCaseTableStatus = {
   reserved: "RESERVED",
 } as const;
 
-export const OrderStatus = {
+export const LowerCaseOrderStatus = {
+  all: "all",
   pending: "pending",
   confirmed: "confirmed",
   preparing: "preparing",
@@ -22,6 +23,7 @@ export const OrderStatus = {
 } as const;
 
 export const UpperCaseOrderStatus = {
+  all: "ALL",
   pending: "PENDING",
   confirmed: "CONFIRMED",
   preparing: "PREPARING",
@@ -31,7 +33,7 @@ export const UpperCaseOrderStatus = {
 } as const;
 
 export const SideBarItem = {
-  dashboard: "dashboard",
+  home: "home",
   tables: "tables",
   orders: "orders",
   menu: "menu",

@@ -1,7 +1,4 @@
-import { ChildrenProps } from "@/types/app/children";
+import type { MenuItemProps } from "@mui/material";
 
 //? & dùng để gộp type
-export type MenuItemMoleculeProps = ChildrenProps & {
-    key?: number | string,
-    value?: number | string,
-}
+export type MenuItemMoleculeProps = MenuItemProps;

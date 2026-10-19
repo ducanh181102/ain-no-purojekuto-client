@@ -1,10 +1,10 @@
 import { TableDetail } from "@/constants/actions";
 import { Sx } from "@/types/app/props/sx";
-import { TableMoleculeProps } from "@/types/components/common/molecule/table";
+import { TableProps } from "@/types/components/features/tables";
 
 export type TableDetailPanelProps = {
-    table?: TableMoleculeProps,
+    table?: TableProps,
     sx?: Sx,
 }
 
-export type DetailActionProps = typeof TableDetail[keyof typeof TableDetail] | null;
+export type TableDetailActionProps = typeof TableDetail[keyof typeof TableDetail] | null;

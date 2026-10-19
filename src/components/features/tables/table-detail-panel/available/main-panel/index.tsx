@@ -3,6 +3,7 @@
 import BoxAtoms from "@/components/common/atoms/box";
 import TextAtoms from "@/components/common/atoms/text";
 import Price from "@/components/common/molecules/price";
+import { UpperCaseTableStatus } from "@/constants/keys";
 import { BorderWidth } from "@/constants/props/borders";
 import { SxColor, TextColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
@@ -24,7 +25,7 @@ export default function AvailableMainPanel() {
 
     const tableId = useTableStore((state) => state.selectedTableId)
     const { data: table } = useTableById(tableId);
-    const occupiedTableId = table?.status === "OCCUPIED" ? tableId : null;
+    const occupiedTableId = table?.status === UpperCaseTableStatus.occupied ? tableId : null;
     const { data: currentOrder } = useOrderIdByTableId(occupiedTableId)
     const currentOrderId = currentOrder?.orderId ?? null;
 
@@ -72,7 +73,7 @@ export default function AvailableMainPanel() {
                             fontWeight: FontWeight.w700,
                         }}
                     >
-                        {getLocalText().chooseTableFromList}
+                        {getLocalText().text.chooseTableFromList}
                     </TextAtoms>
                 </BoxAtoms>
                 <TextAtoms component={Component.div}
@@ -82,7 +83,7 @@ export default function AvailableMainPanel() {
                         fontSize: FontSize.medium,
                         fontWeight: FontWeight.w400,
                     }}>{
-                        getLocalText().noOpenOrderDescription
+                        getLocalText().text.noOpenOrderDescription
                     }</TextAtoms>
             </BoxAtoms>
             <BoxAtoms component={Component.div} sx={{
@@ -96,7 +97,7 @@ export default function AvailableMainPanel() {
                         fontSize: FontSize.large,
                     }}
                     color={TextColor.textSecondary} >
-                    {getLocalText().orderCount}
+                    {getLocalText().text.orderCount}
                 </TextAtoms>
                 <TextAtoms variant={TextVariant.subtitle1}
                     component={"div"}
@@ -105,7 +106,7 @@ export default function AvailableMainPanel() {
                         fontWeight: FontWeight.w600,
                     }}
                     color={TextColor.textPrimary} >
-                    {getLocalText().none}
+                    {getLocalText().text.none}
                 </TextAtoms>
             </BoxAtoms>
             <BoxAtoms component={Component.div} sx={{
@@ -119,7 +120,7 @@ export default function AvailableMainPanel() {
                         fontSize: FontSize.large,
                     }}
                     color={TextColor.textSecondary} >
-                    {getLocalText().tempCalculate}
+                    {getLocalText().text.tempCalculate}
                 </TextAtoms>
                 <Price price={initAmount} isNegative={false} color={TextColor.textPrimary} sx={{
                     fontSize: FontSize.large,
@@ -137,7 +138,7 @@ export default function AvailableMainPanel() {
                         fontSize: FontSize.large,
                     }}
                     color={TextColor.textSecondary} >
-                    {getLocalText().processingStatus}
+                    {getLocalText().text.processingStatus}
                 </TextAtoms>
                 <TextAtoms variant={TextVariant.subtitle1}
                     component={"div"}
@@ -146,7 +147,7 @@ export default function AvailableMainPanel() {
                         fontWeight: FontWeight.w600,
                     }}
                     color={TextColor.textSecondary} >
-                    {getLocalText().notServed}
+                    {getLocalText().text.notServed}
                 </TextAtoms>
             </BoxAtoms>
         </BoxAtoms>

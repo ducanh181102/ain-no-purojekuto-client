@@ -1,6 +1,8 @@
 import { Display } from "@/types/app/props/displays";
+import { TextAlign } from "./aligns";
 import { BorderStyle, BorderWidth } from "./boders";
 import { SxColor } from "./colors";
+import { Cursor } from "./cursor";
 import {
   AlignContentFlex,
   AlignItemsFlex,
@@ -19,8 +21,7 @@ import { Height, MaxHeight, MinHeight } from "./heights";
 import { CustomsZIndex, Inset, Overflow, OverflowY, Position, Top } from "./position";
 import { FontSize, NumSize } from "./sizes";
 import { MaxWidth, MinWidth, Width } from "./width";
-import { Cursor } from "./cursor";
-import { TextAlign } from "./aligns";
+import { WordBreak } from "./word-break";
 
 export type Sx = {
   display?: Display,
@@ -40,6 +41,7 @@ export type Sx = {
   fontWeight?: FontWeight,
   fontSize?: FontSize,
   textAlign?: TextAlign,
+  wordBreak?: WordBreak,
 
   // border
   borderColor?: SxColor,
