@@ -5,13 +5,11 @@ import { SxColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
 import { AlignItems, Gap } from "@/constants/props/flexs";
-import { FontSize, Height, MinHeight, NumSize, Width } from "@/constants/props/sizes";
-import { ChipVariant } from "@/constants/props/variants";
-import { FilterBarProps } from "@/types/components/common/organisms/filter-bar";
+import { Height, NumSize, Width } from "@/constants/props/sizes";
+import { FilterBarDataProps } from "@/types/components/common/organisms/filter-bar";
 import BoxAtoms from "../../atoms/box";
-import StatusChip from "../../molecules/status-chip";
 
-export default function FilterBar({ filterBarProps }: FilterBarProps) {
+export default function FilterBar({filterBarData}: { filterBarData: FilterBarDataProps[] }) {
 
     return <BoxAtoms component={Component.nav} sx={{
         display: Display.flex,
@@ -26,19 +24,6 @@ export default function FilterBar({ filterBarProps }: FilterBarProps) {
         width: Width.filterbar,
         height: Height.full,
     }}>
-        {filterBarProps.map((status) => (
-            <StatusChip key={status.key} variant={ChipVariant.outlined}
-                status={status.status}
-                onClick={status.onClick}
-                count={status.count}
-                icon={status.icon}
-                sx={{
-                    display: Display.flex,
-                    borderRadius: NumSize.medium,
-                    minHeight: MinHeight.chipMedium,
-                    fontSize: FontSize.medium,
-                }} />
-        ))
-        }
+        {filterBarData.map((status) => status)}
     </BoxAtoms>
 }

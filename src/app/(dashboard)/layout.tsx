@@ -8,8 +8,9 @@ import { SxColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
 import { Margin, MinHeight, Width } from "@/constants/props/sizes";
-import { useUIStore } from "@/stores/useUIStore";
 import { getLocalText } from "@/lib/i18n";
+import { useSideBarStore } from "@/stores/useSideBarStore";
+import { useUIStore } from "@/stores/useUIStore";
 
 export default function DashboardLayout({
   children,
@@ -18,7 +19,7 @@ export default function DashboardLayout({
 }) {
   const errorMsg = useUIStore((state) => state.errorMsg)
   const setErrorMsg = useUIStore((state) => state.setErrorMsg)
-  const locale = useUIStore((state) => state.locale)
+  const sideBar = useSideBarStore((state) => state.selectedSideBar);
   
   return (
     <BoxAtoms component={Component.section} sx={{
@@ -30,7 +31,7 @@ export default function DashboardLayout({
         isOpen={!!errorMsg}
         autoHideDuration={3000}
         onClose={() => setErrorMsg("")}
-        msg={errorMsg || getLocalText().blank}
+        msg={errorMsg || getLocalText().text.blank}
       >
       </SnackBarMolecule>
       <Sidebar />
@@ -38,7 +39,7 @@ export default function DashboardLayout({
       <BoxAtoms component={Component.section} sx={{
         ml: Margin.sidebarWidth,
       }}>
-        <Topbar />
+        <Topbar title={getLocalText().text[sideBar as keyof typeof getLocalText] || getLocalText().text.blank} />
         <BoxAtoms component={Component.section} sx={{
           mt: Margin.topbarHeight,
           width: Width.topbar,

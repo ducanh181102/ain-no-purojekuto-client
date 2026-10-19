@@ -40,13 +40,13 @@ export default function AccupiedMainPanel() {
             gap: Gap.small,
         }}>
             <TextAtoms variant={TextVariant.caption}
-                component={"div"}
+                component={Component.div}
                 sx={{
                     fontSize: FontSize.xlarge,
                     fontWeight: FontWeight.w600,
                 }}
                 color={TextColor.textPrimary} >
-                {getLocalText().orderInf}
+                {getLocalText().text.orderInf}
             </TextAtoms>
             <BoxAtoms component={Component.div} sx={{
                 display: Display.flex,
@@ -54,12 +54,12 @@ export default function AccupiedMainPanel() {
                 justifyContent: JustifyContent.spaceBetween,
             }}>
                 <TextAtoms variant={TextVariant.subtitle1}
-                    component={"div"}
+                    component={Component.div}
                     sx={{
                         fontSize: FontSize.large,
                     }}
                     color={TextColor.textSecondary} >
-                    {getLocalText().tempCalculate}
+                    {getLocalText().text.tempCalculate}
                 </TextAtoms>
                 <Price price={totalAmount} color={TextColor.textPrimary} sx={{
                     fontSize: FontSize.large,
@@ -72,12 +72,12 @@ export default function AccupiedMainPanel() {
                 justifyContent: JustifyContent.spaceBetween,
             }}>
                 <TextAtoms variant={TextVariant.subtitle1}
-                    component={"div"}
+                    component={Component.div}
                     sx={{
                         fontSize: FontSize.large,
                     }}
                     color={TextColor.textSecondary} >
-                    {getLocalText().discount}
+                    {getLocalText().text.discount}
                 </TextAtoms>
                 <Price price={discountAmount} isNegative={true} color={TextColor.error} sx={{
                     fontSize: FontSize.large,
@@ -90,13 +90,13 @@ export default function AccupiedMainPanel() {
                 justifyContent: JustifyContent.spaceBetween,
             }}>
                 <TextAtoms variant={TextVariant.subtitle1}
-                    component={"div"}
+                    component={Component.div}
                     sx={{
                         fontSize: FontSize.xlarge,
                         fontWeight: FontWeight.w600,
                     }}
                     color={TextColor.textPrimary} >
-                    {getLocalText().total}
+                    {getLocalText().text.total}
                 </TextAtoms>
                 <Price price={totalAmount - discountAmount} color={TextColor.primary} sx={{
                     fontSize: FontSize.x2large,

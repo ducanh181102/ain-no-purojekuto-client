@@ -2,12 +2,14 @@
 
 import ButtonAtoms from "@/components/common/atoms/button";
 import LineAtoms from "@/components/common/atoms/line";
+import StackAtoms from "@/components/common/atoms/stack";
 import TextAtoms from "@/components/common/atoms/text";
 import DialogMolecule from "@/components/common/molecules/dialog";
 import DialogActionsMolecule from "@/components/common/molecules/dialog-actions";
 import DialogContentMolecule from "@/components/common/molecules/dialog-content";
 import DialogTitleMolecule from "@/components/common/molecules/dialog-title";
-import StackMolecule from "@/components/common/molecules/stack";
+import DropDownInputMolecule from "@/components/common/molecules/drop-down";
+import MenuItemMolecule from "@/components/common/molecules/menu-item";
 import { TableDetail } from "@/constants/actions";
 import { UpperCaseOrderStatus, UpperCasePaymentMethod, UpperCaseTableStatus } from "@/constants/keys";
 import { Null } from "@/constants/null";
@@ -27,11 +29,6 @@ import { getLocalText } from "@/lib/i18n";
 import { useTableStore } from "@/stores/useTableStore";
 import { PaymentMethod } from "@/types/components/features/orders";
 import { PaymentProps } from "@/types/components/features/tables/table-detail-panel/dialog/payment";
-import { Update } from "@mui/icons-material";
-import {
-    MenuItem,
-    TextField
-} from "@mui/material";
 import { useState } from "react";
 
 export default function PaymentDialog({ setActiveAction, activeAction, paymentMethods }: PaymentProps) {
@@ -74,61 +71,58 @@ export default function PaymentDialog({ setActiveAction, activeAction, paymentMe
     const formatMoney = (value?: number | string | null) => {
         const amount = Number(value ?? Numbers.zero);
         const safeAmount = Number.isFinite(amount) ? amount : Numbers.zero;
-        return `${safeAmount.toLocaleString(getLocalText().numberLocale)} ${getLocalText().currencySuffix}`;
+        return `${safeAmount.toLocaleString(getLocalText().text.numberLocale)} ${getLocalText().text.currencySuffix}`;
     };
 
     return <>
         <DialogMolecule open={activeAction === TableDetail.payment} onClose={closeDialog} maxWidth={MuiSize.xs}>
-            <DialogTitleMolecule>{`${getLocalText().pay} ${table?.name ?? getLocalText().blank}`}</DialogTitleMolecule>
+            <DialogTitleMolecule>{`${getLocalText().text.pay} ${table?.name ?? getLocalText().text.blank}`}</DialogTitleMolecule>
             <DialogContentMolecule>
                 {!hasCurrentOrder ? (
-                    <TextAtoms color={TextColor.secondary} component={Component.p}>{getLocalText().noCurrentOrder}</TextAtoms>
+                    <TextAtoms color={TextColor.secondary} component={Component.p}>{getLocalText().text.noCurrentOrder}</TextAtoms>
                 ) : (
-                    <StackMolecule spacing={Spacing.xlarge}>
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms color={TextColor.textPrimary} component={Component.p}>{getLocalText().orderCode}</TextAtoms>
+                    <StackAtoms spacing={Spacing.xlarge}>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms color={TextColor.textPrimary} component={Component.p}>{getLocalText().text.orderCode}</TextAtoms>
                             <TextAtoms component={Component.p} sx={{ fontWeight: FontWeight.w600 }}>{`#${currentOrderId}`}</TextAtoms>
-                        </StackMolecule>
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms color={TextColor.textPrimary} component={Component.p}>{getLocalText().tempCalculate}</TextAtoms>
+                        </StackAtoms>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms color={TextColor.textPrimary} component={Component.p}>{getLocalText().text.tempCalculate}</TextAtoms>
                             <TextAtoms component={Component.p} sx={{ fontWeight: FontWeight.w600 }}>{formatMoney(totalAmount)}</TextAtoms>
-                        </StackMolecule>
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms color={TextColor.textPrimary} component={Component.p}>{getLocalText().discount}</TextAtoms>
+                        </StackAtoms>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms color={TextColor.textPrimary} component={Component.p}>{getLocalText().text.discount}</TextAtoms>
                             <TextAtoms component={Component.p} sx={{ fontWeight: FontWeight.w600 }}>{formatMoney(discountAmount)}</TextAtoms>
-                        </StackMolecule>
+                        </StackAtoms>
                         <LineAtoms orientation={Orientation.horizontal} />
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms component={Component.p} sx={{ fontWeight: FontWeight.w700 }}>{getLocalText().amountToCollect}</TextAtoms>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms component={Component.p} sx={{ fontWeight: FontWeight.w700 }}>{getLocalText().text.amountToCollect}</TextAtoms>
                             <TextAtoms component={Component.p} color={TextColor.primary} sx={{ fontWeight: FontWeight.w700 }}>{formatMoney(totalAmount - discountAmount)}</TextAtoms>
-                        </StackMolecule>
-                        <TextField
-                            select
-                            fullWidth 
-                            label={getLocalText().paymentMethod}
+                        </StackAtoms>
+                        <DropDownInputMolecule
+                            label={getLocalText().text.paymentMethod}
                             value={paymentMethod}
-                            onChange={(event) => setPaymentMethod(event.target.value as PaymentMethod)}
-                        >
+                            onChange={(event) => setPaymentMethod(event.target.value as PaymentMethod)}>
                             {paymentMethods.map((method) => (
-                                <MenuItem key={method.value} value={method.value}>
+                                <MenuItemMolecule key={method.value} value={method.value}>
                                     {method.label}
-                                </MenuItem>
+                                </MenuItemMolecule>
                             ))}
-                        </TextField>
+                        </DropDownInputMolecule>
                         {isPendingOrder ? (
-                            <TextAtoms component={Component.p} color={TextColor.warning}>{getLocalText().pendingOrderPaymentWarning}</TextAtoms>
+                            <TextAtoms component={Component.p} color={TextColor.warning}>{getLocalText().text.pendingOrderPaymentWarning}</TextAtoms>
                         ) : Null}
-                    </StackMolecule>
+                    </StackAtoms>
                 )}
             </DialogContentMolecule>
             <DialogActionsMolecule>
-                <ButtonAtoms onClick={closeDialog} variant={ButtonVariant.text}>{getLocalText().close}</ButtonAtoms>
+                <ButtonAtoms onClick={closeDialog} variant={ButtonVariant.text}>{getLocalText().text.close}</ButtonAtoms>
                 <ButtonAtoms
                     variant={ButtonVariant.contained}
                     onClick={handlePayOrder}
                     disabled={!canSubmitPayment || isPayingOrder}
                 >
-                    {isPayingOrder ? getLocalText().payingOrder : getLocalText().confirm}
+                    {isPayingOrder ? getLocalText().text.payingOrder : getLocalText().text.confirm}
                 </ButtonAtoms>
             </DialogActionsMolecule>
         </DialogMolecule>

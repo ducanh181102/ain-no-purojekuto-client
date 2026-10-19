@@ -15,12 +15,12 @@ import { usePayOrder } from "@/hooks/mutations/usePayOrder";
 import { useDishes } from "@/hooks/queries/useDishes";
 import { useOrderItemByOrderId, useTotalOrderItemByOrderId } from "@/hooks/queries/useOrderItems";
 import { useOrderById, useOrderIdByTableId } from "@/hooks/queries/useOrders";
+import { useReservationByTableId } from "@/hooks/queries/useReservations";
 import { useTableById } from "@/hooks/queries/useTables";
 import { getLocalText } from "@/lib/i18n";
 import { useTableStore } from "@/stores/useTableStore";
-import { useUIStore } from "@/stores/useUIStore";
 import { PaymentMethod } from "@/types/components/features/orders";
-import { DetailActionProps, TableDetailPanelProps } from "@/types/components/features/tables/table-detail-panel";
+import { TableDetailActionProps, TableDetailPanelProps } from "@/types/components/features/tables/table-detail-panel";
 import { useState } from "react";
 import AccupiedFooterPanel from "./accupied/footer-panel";
 import AccupiedHeaderPanel from "./accupied/header-panel";
@@ -29,31 +29,43 @@ import AvailableFooterPanel from "./available/footer-panel";
 import AvailableHeaderPanel from "./available/header-panel";
 import AvailableMainPanel from "./available/main-panel";
 import AddDishDialog from "./dialog/add-dish";
+import CancelReservationDialog from "./dialog/cancel-reservation";
+import ChangeTableDialog from "./dialog/change-table";
 import PaymentDialog from "./dialog/payment";
+import ReceiveTableDialog from "./dialog/receive-table";
 import ReserveTableDialog from "./dialog/reserve-table";
 import ViewOrderDialog from "./dialog/view-order";
 import NoneSelectedTable from "./none-selected-table";
+import ReservedFooterPanel from "./reserved/footer-panel";
+import ReservedHeaderPanel from "./reserved/header-panel";
+import ReservedMainPanel from "./reserved/main-panel";
 
 export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
-    const locale = useUIStore((state) => state.locale) ?? "vi";
 
     const paymentMethods: { value: PaymentMethod; label: string }[] = [
-        { value: UpperCasePaymentMethod.cash, label: getLocalText().cash },
-        { value: UpperCasePaymentMethod.banking, label: getLocalText().banking },
-        { value: UpperCasePaymentMethod.momo, label: getLocalText().momo },
+        { value: UpperCasePaymentMethod.cash, label: getLocalText().text.cash },
+        { value: UpperCasePaymentMethod.banking, label: getLocalText().text.banking },
+        { value: UpperCasePaymentMethod.momo, label: getLocalText().text.momo },
     ];
 
-    const [activeAction, setActiveAction] = useState<DetailActionProps>(null);
+    const [activeAction, setActiveAction] = useState<TableDetailActionProps>(null);
     const [selectedDishId, setSelectedDishId] = useState<number | "">("");
     const [quantity, setQuantity] = useState(1);
     const [note, setNote] = useState("");
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("CASH");
 
+    // lấy id table đang chọn
     const tableId = useTableStore((state) => state.selectedTableId)
+    // get thông tin bàn
     const { data: table } = useTableById(tableId);
     const occupiedTableId = table?.status === UpperCaseTableStatus.occupied ? tableId : null;
     const { data: currentOrder } = useOrderIdByTableId(occupiedTableId)
     const currentOrderId = currentOrder?.orderId ?? null;
+
+    // check bàn có phải trạng thái đặt
+    const reservedTableId = table?.status === UpperCaseTableStatus.reserved ? tableId : null;
+    // get thông tin đặt bàn
+    const { data: reservation } = useReservationByTableId(reservedTableId)
 
     const { data: order } = useOrderById(currentOrderId);
     const { data: orderItems = [] } = useOrderItemByOrderId(currentOrderId);
@@ -110,37 +122,9 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
         });
     };
 
-    const formatVNTime = (value?: string | Date | null, format?: string) => {
-        if (!value) return getLocalText().blank;
+    
 
-        const date = value instanceof Date ? value : new Date(value);
-
-        if (Number.isNaN(date.getTime())) {
-            return getLocalText().blank;
-        }
-
-        return date.toLocaleString("vi-VN", format == getLocalText().HHmm ? {
-            timeZone: "Asia/Ho_Chi_Minh",
-            hour12: false,
-            hour: "2-digit",
-            minute: "2-digit",
-        } : {
-            timeZone: "Asia/Ho_Chi_Minh",
-            hour12: false,
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-        });
-    };
-
-    const formatMoney = (value?: number | string | null) => {
-        const amount = Number(value ?? 0);
-        const safeAmount = Number.isFinite(amount) ? amount : 0;
-        return `${safeAmount.toLocaleString(getLocalText().numberLocale)} ${getLocalText().currencySuffix}`;
-    };
+    
 
     return <>
         <DetailPanel sx={sx} title={table?.name || ''}>
@@ -172,10 +156,25 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
                         }} />
                         <AvailableMainPanel />
                     </BoxAtoms>
-                    <AvailableFooterPanel setActiveAction={setActiveAction} tableId={tableId}/>
-                </> : <>
-                    <NoneSelectedTable />
-                </>)
+                    <AvailableFooterPanel setActiveAction={setActiveAction} tableId={tableId} />
+                </> :
+                    (table?.status == UpperCaseTableStatus.reserved ? <>
+                        <BoxAtoms component={Component.div} sx={{
+                            display: Display.flex,
+                            flexDirection: FlexDirection.column,
+                            gap: Gap.small,
+                        }}>
+                            <ReservedHeaderPanel table={table} reservation={reservation ?? null} />
+                            <LineAtoms orientation={Orientation.horizontal} sx={{
+                                borderColor: SxColor.border,
+                                borderWidth: BorderWidth.bottomMediumBorder,
+                            }} />
+                            <ReservedMainPanel />
+                        </BoxAtoms>
+                        <ReservedFooterPanel setActiveAction={setActiveAction} />
+                    </> : <NoneSelectedTable />
+                    )
+                )
             }
         </DetailPanel>
 
@@ -186,5 +185,11 @@ export default function TableDetailPanel({ sx }: TableDetailPanelProps) {
         <PaymentDialog setActiveAction={setActiveAction} activeAction={activeAction} paymentMethods={paymentMethods} />
 
         <ReserveTableDialog setActiveAction={setActiveAction} activeAction={activeAction} />
+
+        <ReceiveTableDialog setActiveAction={setActiveAction} activeAction={activeAction} reservation={reservation || null} />
+
+        <ChangeTableDialog setActiveAction={setActiveAction} activeAction={activeAction} reservation={reservation || null} />
+
+        <CancelReservationDialog setActiveAction={setActiveAction} activeAction={activeAction} reservation={reservation || null} />
     </>
 }

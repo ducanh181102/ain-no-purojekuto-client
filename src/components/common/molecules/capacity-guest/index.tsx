@@ -22,6 +22,6 @@ export default function CapacityGuest({ capacity, sx }: CapacityGuestProps) {
     }}
     children={
       `${capacity} 
-          ${getLocalText().guest}`
+          ${getLocalText().text.guest}`
     }></TextAtoms>
 }

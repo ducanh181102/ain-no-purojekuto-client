@@ -1,27 +1,23 @@
 'use client';
 
 import ChipAtoms from "@/components/common/atoms/chip";
-import { BgColorTableStatus, ColorTableStatus } from "@/constants/props/colors";
-import { Strings } from "@/constants/strings";
-import { useUIStore } from "@/stores/useUIStore";
+import { Display } from "@/constants/props/displays";
+import { FontSize, MinHeight, NumSize } from "@/constants/props/sizes";
+import { ChipVariant } from "@/constants/props/variants";
 import { StatusChipProps } from "@/types/components/common/molecule/status-chip";
-import { TableStatusKey } from "@/types/keys";
 
-export default function StatusChip({ status, variant, sx, icon, count, onClick }: StatusChipProps) {
+export default function StatusChip({ color, bgcolor, label }: StatusChipProps) {
 
-  const locale = useUIStore((state) => state.locale)
-  const statusKey: TableStatusKey = status?.toLowerCase() as TableStatusKey;
-  const label = `${Strings[locale].tableStatus[statusKey]} ${count ?? ''}`;
-  const bgColor = BgColorTableStatus[statusKey];
-  const color = ColorTableStatus[statusKey];
+  const variant = ChipVariant.outlined;
 
   return <ChipAtoms variant={variant}
     color={color}
     label={label}
-    onClick={onClick}
-    icon={icon}
     sx={{
-      ...sx,
-      bgcolor: bgColor
+      display: Display.flex,
+      borderRadius: NumSize.medium,
+      minHeight: MinHeight.chipMedium,
+      fontSize: FontSize.medium,
+      bgcolor: bgcolor
     }} />
 }

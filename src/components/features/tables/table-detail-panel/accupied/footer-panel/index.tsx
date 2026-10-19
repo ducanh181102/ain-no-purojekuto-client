@@ -31,7 +31,7 @@ export default function AccupiedFooterPanel({ setActiveAction }: AccupiedFooterP
             }}
                 variant={ButtonVariant.outlined}
                 onClick={() => setActiveAction(TableDetail.viewOrder)}
-                children={getLocalText().viewOrder}
+                children={getLocalText().text.viewOrder}
             />
             <ButtonAtoms
                 sx={{
@@ -39,7 +39,7 @@ export default function AccupiedFooterPanel({ setActiveAction }: AccupiedFooterP
                 }}
                 variant={ButtonVariant.contained}
                 onClick={() => setActiveAction(TableDetail.addDish)}
-                children={getLocalText().addDish}
+                children={getLocalText().text.addDish}
             />
             <ButtonAtoms
                 sx={{
@@ -50,7 +50,7 @@ export default function AccupiedFooterPanel({ setActiveAction }: AccupiedFooterP
                 }}
                 variant={ButtonVariant.outlined}
                 onClick={() => setActiveAction(TableDetail.payment)}
-                children={getLocalText().pay}
+                children={getLocalText().text.pay}
             />
 
         </BoxAtoms>

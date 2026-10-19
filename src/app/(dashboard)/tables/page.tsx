@@ -4,6 +4,7 @@ import TableFilter from "@/components/features/tables/table-filter";
 import TableSearch from "@/components/features/tables/table-search";
 import { BorderStyle, BorderWidth } from "@/constants/props/borders";
 import { SxColor } from "@/constants/props/colors";
+import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
 import { AlignItems, Flex, FlexDirection, Gap, JustifyContent } from "@/constants/props/flexs";
 import { FontWeight } from "@/constants/props/font-weights";
@@ -11,7 +12,6 @@ import { AlignContent, GridAutoRows, GridTemplateColumns } from "@/constants/pro
 import { OverflowY, Position, Top } from "@/constants/props/position";
 import { BorderRadius, FontSize, Height, MinHeight, Padding, Width } from "@/constants/props/sizes";
 import TablesClient from "../../../components/features/tables/tables-client";
-import { Component } from "@/constants/props/components";
 
 // Component React
 // Props: -
@@ -75,7 +75,7 @@ export default async function TablesPage() {
           display: Display.flex,
           flexDirection: FlexDirection.column,
           justifyContent: JustifyContent.spaceBetween,
-          gap: Gap.xLarge,
+          gap: Gap.xSmall,
 
         }} />
       </BoxAtoms>

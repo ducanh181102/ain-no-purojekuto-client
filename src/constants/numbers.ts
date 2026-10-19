@@ -12,7 +12,7 @@ export const Numbers = {
   eight: 8,
   nine: 9,
   ten: 10,
-
+  eleven: 11,
   twelve: 12,
   fourteen: 14,
   sixteen: 16,

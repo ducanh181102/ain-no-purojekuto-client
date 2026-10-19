@@ -7,7 +7,7 @@ export async function getDishes(): Promise<DishMoleculeProps[]> {
   });
 
   if (!res.ok) {
-    throw new Error(getLocalText().fetchDishesError);
+    throw new Error(getLocalText().text.fetchDishesError);
   }
 
   return res.json();

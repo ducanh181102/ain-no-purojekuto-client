@@ -1,3 +1,5 @@
+import { Numbers } from "../numbers";
+
 export const StrSize = {
   small: "small",
   medium: "medium",
@@ -12,6 +14,23 @@ export const MuiSize = {
   xl: "xl",
 } as const
 
+export const GridSize = {
+  auto: "auto",
+  grow: "grow",
+  grid1: Numbers.one,
+  grid2: Numbers.two,
+  grid3: Numbers.three,
+  grid4: Numbers.four,
+  grid5: Numbers.five,
+  grid6: Numbers.six,
+  grid7: Numbers.seven,
+  grid8: Numbers.eight,
+  grid9: Numbers.nine,
+  grid10: Numbers.ten,
+  grid11: Numbers.eleven,
+  grid12: Numbers.twelve,
+} as const
+
 export const NumSize = {
   none: 0,
 
@@ -22,13 +41,16 @@ export const NumSize = {
   large: 1.6,
   xlarge: 2,
 
+  half: "50%",
   full: "100%",
 
   // circle
   circle: "50%",
 
   // space
-  xsmallSpace: 1,
+  x3smallSpace: 0.5,
+  x2smallSpace: 1,
+  xsmallSpace: 1.5,
   smallSpace: 2,
   mediumSpace: 3,
   largeSpace: 4,
@@ -38,16 +60,20 @@ export const NumSize = {
   xsmallLen: 6,
   smallLen: 12,
   mediumLen: 24,
-  largeLen: 48,
+  largeLen: 46,
   xlargeLen: 96,
 
   // fontSize
-  smallFontSize: 9,
-  mediumFontSize: 13,
-  largeFontSize: 15,
-  xlargeFontSize: 17,
-  x2largeFontSize: 19,
-  x3largeFontSize: 23,
+  xsmallFontSize: 8,
+  smallFontSize: 10,
+  mediumFontSize: 12,
+  largeFontSize: 14,
+  xlargeFontSize: 16,
+  x2largeFontSize: 18,
+  x3largeFontSize: 20,
+  x4largeFontSize: 24,
+  x5largeFontSize: 28,
+
 
   // Width App
   screenWidth: "100vw",
@@ -60,10 +86,11 @@ export const NumSize = {
   // Height App
   screenHeight: "100vh",
   topBarHeight: "9vh",
-  detailPanelHeight: "70vh",
+  detailPanelHeight: "76vh",
   mainAreaHeight: "91vh",
   toolBarHeight: "7vh",
   tableClient: "66vh",
+  orderClient: "76vh",
 
   // Width Item
   x2smallChipWidth: "60px",
@@ -115,6 +142,16 @@ export const NumSize = {
   smallInputHeight: "32px",
   mediumInputHeight: "40px",
   largeInputHeight: "48px",
+
+  // textarea
+  smallTextareaHeight: "32px",
+  mediumTextareaHeight: "64px",
+  largeTextareaHeight: "128px",
+
+  // table
+  headerTableHeight: "32px",
+  bodyTableHeight: "480px",
+
 } as const;
 
 export const MaxLength = {
@@ -145,6 +182,7 @@ export const MinHeight = {
   screenHeight: NumSize.screenHeight,
   topbar: NumSize.topBarHeight,
   toolbar: NumSize.toolBarHeight,
+  zero: NumSize.none,
 
   // chip
   chipSmall: NumSize.smallChipHeight,
@@ -162,6 +200,9 @@ export const MinHeight = {
   avatarLarge: NumSize.largeAvatarHeight,
   avatarXlarge: NumSize.xlargeAvatarHeight,
 
+  // table
+  bodyTable: NumSize.bodyTableHeight,
+  headerTable: NumSize.headerTableHeight,
 
 } as const;
 
@@ -198,6 +239,7 @@ export const Height = {
   toolbar: NumSize.toolBarHeight,
   mainArea: NumSize.mainAreaHeight,
   tableClient: NumSize.tableClient,
+  orderClient: NumSize.orderClient,
   full: NumSize.full,
 
   // chip
@@ -227,6 +269,11 @@ export const Height = {
   iconLarge: NumSize.largeIcon,
   iconXLarge: NumSize.xlargeIcon,
 
+  // textarea
+  textareaSmall: NumSize.smallTextareaHeight,
+  textareaMedium: NumSize.mediumTextareaHeight,
+  textareaLarge: NumSize.largeTextareaHeight,
+
 } as const;
 
 export const Width = {
@@ -238,6 +285,8 @@ export const Width = {
   detailPanel: NumSize.detailPanelWidth,
   mainArea: NumSize.mainAreaWidth,
   full: NumSize.full,
+  half: NumSize.half,
+  fitContent: "fit-content",
 
   // chip
   chipX2Small: NumSize.x2smallChipWidth,
@@ -302,6 +351,10 @@ export const MaxWidth = {
 export const MinWidth = {
   // app
   screen: NumSize.screenWidth,
+  filterbar: NumSize.filterBarWidth,
+  detailPanel: NumSize.detailPanelWidth,
+  mainArea: NumSize.mainAreaWidth,
+  full: NumSize.full,
 
   // topbar
   topbar: NumSize.topBarWidth,
@@ -332,6 +385,8 @@ export const Margin = {
   toolbar_spaceHeight: NumSize.toolBarHeight,
 
   // space
+  x2smallSpace: NumSize.x2smallSpace,
+  x3smallSpace: NumSize.x3smallSpace,
   xsmallSpace: NumSize.xsmallSpace,
   smallSpace: NumSize.smallSpace,
   mediumSpace: NumSize.mediumSpace,
@@ -343,8 +398,11 @@ export const Padding = {
   // app
   sidebarWidth: NumSize.sideBarWidth,
   topbarHeight: NumSize.topBarHeight,
+  
 
   // space
+  x3smallSpace: NumSize.x3smallSpace,
+  x2smallSpace: NumSize.x2smallSpace,
   xsmallSpace: NumSize.xsmallSpace,
   smallSpace: NumSize.smallSpace,
   mediumSpace: NumSize.mediumSpace,
@@ -364,6 +422,8 @@ export const Padding = {
   cardMedium: NumSize.medium,
   cardLarge: NumSize.large,
   cardXLarge: NumSize.xlarge,
+
+
 
 } as const;
 
@@ -385,7 +445,8 @@ export const FontSize = {
   xlarge: NumSize.xlargeFontSize,
   x2large: NumSize.x2largeFontSize,
   x3large: NumSize.x3largeFontSize,
-
+  x4large: NumSize.x4largeFontSize,
+  x5large: NumSize.x5largeFontSize,
 } as const;
 
 export const Spacing = {

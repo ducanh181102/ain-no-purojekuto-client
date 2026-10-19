@@ -3,24 +3,19 @@
 import BoxAtoms from "@/components/common/atoms/box";
 import TextAtoms from "@/components/common/atoms/text";
 import CapacityGuest from "@/components/common/molecules/capacity-guest";
-import StatusChip from "@/components/common/molecules/status-chip";
 import TimeHhMm from "@/components/common/molecules/time-hhmm";
 import { TextColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
-import { Cursor } from "@/constants/props/cursor";
 import { Display } from "@/constants/props/displays";
 import { AlignItems, FlexDirection, Gap, JustifyContent } from "@/constants/props/flexs";
-import { FontWeight } from "@/constants/props/font-weights";
-import { FontSize, MinHeight, NumSize, Width } from "@/constants/props/sizes";
-import { ChipVariant } from "@/constants/props/variants";
+import { FontSize, NumSize } from "@/constants/props/sizes";
 import { useOrderById, useOrderIdByTableId } from "@/hooks/queries/useOrders";
 import { useTableById } from "@/hooks/queries/useTables";
 import { getLocalText } from "@/lib/i18n";
 import { useTableStore } from "@/stores/useTableStore";
-import { useUIStore } from "@/stores/useUIStore";
+import TableStatus from "../../../table-status";
 
 export default function AccupiedHeaderPanel() {
-    const locale = useUIStore((state) => state.locale)
 
     const tableId = useTableStore((state) => state.selectedTableId)
     const { data: table } = useTableById(tableId);
@@ -31,15 +26,15 @@ export default function AccupiedHeaderPanel() {
     const { data: order } = useOrderById(currentOrderId);
 
     const formatVNTime = (value?: string | Date | null, format?: string) => {
-        if (!value) return getLocalText().blank;
+        if (!value) return getLocalText().text.blank;
 
         const date = value instanceof Date ? value : new Date(value);
 
         if (Number.isNaN(date.getTime())) {
-            return getLocalText().blank;
+            return getLocalText().text.blank;
         }
 
-        return date.toLocaleString("vi-VN", format == getLocalText().HHmm ? {
+        return date.toLocaleString("vi-VN", format == getLocalText().text.HHmm ? {
             timeZone: "Asia/Ho_Chi_Minh",
             hour12: false,
             hour: "2-digit",
@@ -63,18 +58,7 @@ export default function AccupiedHeaderPanel() {
             mt: NumSize.xlargeSpace,
             gap: Gap.small,
         }}>
-            <StatusChip status={table?.status}
-                variant={ChipVariant.outlined}
-                sx={{
-                    display: Display.flex,
-                    borderRadius: NumSize.medium,
-                    minHeight: MinHeight.chipMedium,
-                    fontSize: FontSize.medium,
-                    width: Width.chipXSmall,
-                    fontWeight: FontWeight.w400,
-                    cursor: Cursor.default,
-                }}
-            />
+            <TableStatus status={table?.status ?? ""} />
             <BoxAtoms component={Component.div} sx={{
                 display: Display.flex,
                 flexDirection: FlexDirection.row,
@@ -92,7 +76,7 @@ export default function AccupiedHeaderPanel() {
                     }}>
                         <TextAtoms
                             children={
-                                `${getLocalText().start}${getLocalText().twoDot}`
+                                `${getLocalText().text.start}${getLocalText().text.twoDot}`
                             }
                             sx={{
                                 fontSize: FontSize.large,
@@ -103,7 +87,7 @@ export default function AccupiedHeaderPanel() {
                             component={"div"} >
                         </TextAtoms>
 
-                        <TimeHhMm time={formatVNTime(order?.createdAt, getLocalText().HHmm)}
+                        <TimeHhMm time={formatVNTime(order?.createdAt, getLocalText().text.HHmm)}
                             sx={{
                                 fontSize: FontSize.large,
                             }}

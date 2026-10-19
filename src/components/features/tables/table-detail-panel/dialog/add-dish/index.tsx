@@ -1,6 +1,7 @@
 'use client'
 
 import ButtonAtoms from "@/components/common/atoms/button";
+import StackAtoms from "@/components/common/atoms/stack";
 import TextAtoms from "@/components/common/atoms/text";
 import DialogMolecule from "@/components/common/molecules/dialog";
 import DialogActionsMolecule from "@/components/common/molecules/dialog-actions";
@@ -10,7 +11,6 @@ import DropDownInputMolecule from "@/components/common/molecules/drop-down";
 import InputMolecule from "@/components/common/molecules/input";
 import MenuItemMolecule from "@/components/common/molecules/menu-item";
 import QuantityInputMolecule from "@/components/common/molecules/quantity-input";
-import StackMolecule from "@/components/common/molecules/stack";
 import { TableDetail } from "@/constants/actions";
 import { UpperCaseTableStatus } from "@/constants/keys";
 import { Null } from "@/constants/null";
@@ -21,24 +21,22 @@ import { FlexDirection, JustifyContent } from "@/constants/props/flexs";
 import { FontWeight } from "@/constants/props/font-weights";
 import { MuiSize, Spacing } from "@/constants/props/sizes";
 import { ButtonVariant, TextVariant } from "@/constants/props/variants";
-import { Strings } from "@/constants/strings";
 import { useCreateOrderItem } from "@/hooks/mutations/useCreateOrderItem";
 import { useDishes } from "@/hooks/queries/useDishes";
 import { useOrderIdByTableId } from "@/hooks/queries/useOrders";
 import { useTableById } from "@/hooks/queries/useTables";
 import { getLocalText } from "@/lib/i18n";
 import { useTableStore } from "@/stores/useTableStore";
-import { useUIStore } from "@/stores/useUIStore";
 import { Blank } from "@/types/app/blank";
 import { AddDishProps } from "@/types/components/features/tables/table-detail-panel/dialog/add-dish";
 import { useState } from "react";
+import { formatMoney } from "@/utils/number";
 
 export default function AddDishDialog({ setActiveAction, activeAction }: AddDishProps) {
-    const locale = useUIStore((state) => state.locale) ?? Strings.vi.value;
 
-    const [selectedDishId, setSelectedDishId] = useState<number | Blank>(getLocalText().blank);
+    const [selectedDishId, setSelectedDishId] = useState<number | Blank>(getLocalText().text.blank);
     const [quantity, setQuantity] = useState<number>(Numbers.one);
-    const [note, setNote] = useState<string>(getLocalText().blank);
+    const [note, setNote] = useState<string>(getLocalText().text.blank);
 
     const tableId = useTableStore((state) => state.selectedTableId)
     const { data: table } = useTableById(tableId);
@@ -50,7 +48,7 @@ export default function AddDishDialog({ setActiveAction, activeAction }: AddDish
     const { mutate: createOrderItem, isPending: isAddingDish } = useCreateOrderItem();
 
     const hasCurrentOrder = !!currentOrderId;
-    const availableDishes = dishes.filter((dish) => dish.available === getLocalText().oneString);
+    const availableDishes = dishes.filter((dish) => dish.available === getLocalText().text.oneString);
     const selectedDish = availableDishes.find((dish) => dish.id === selectedDishId);
     const addDishTotal = (selectedDish?.price ?? Numbers.zero) * quantity;
 
@@ -59,9 +57,9 @@ export default function AddDishDialog({ setActiveAction, activeAction }: AddDish
     };
 
     const resetAddDishForm = () => {
-        setSelectedDishId(getLocalText().blank);
+        setSelectedDishId(getLocalText().text.blank);
         setQuantity(Numbers.one);
-        setNote(getLocalText().blank);
+        setNote(getLocalText().text.blank);
     };
 
     const handleAddDish = () => {
@@ -80,58 +78,51 @@ export default function AddDishDialog({ setActiveAction, activeAction }: AddDish
         });
     };
 
-    const formatMoney = (value?: number | string | null) => {
-        const amount = Number(value ?? Numbers.zero);
-        const safeAmount = Number.isFinite(amount) ? amount : Numbers.zero;
-        return `${safeAmount.toLocaleString(getLocalText().numberLocale)} ${getLocalText().currencySuffix}`;
-    };
-
     return <>
         <DialogMolecule open={activeAction === TableDetail.addDish} onClose={closeDialog} maxWidth={MuiSize.sm}>
-            <DialogTitleMolecule>{`${getLocalText().addDish} ${table?.name ?? getLocalText().blank}`}</DialogTitleMolecule>
+            <DialogTitleMolecule>{`${getLocalText().text.addDish} ${table?.name ?? getLocalText().text.blank}`}</DialogTitleMolecule>
             <DialogContentMolecule>
                 {!hasCurrentOrder ? (
-                    <TextAtoms color={TextColor.textSecondary} variant={TextVariant.caption} component={Component.h1}>{getLocalText().noCurrentOrder}</TextAtoms>
+                    <TextAtoms color={TextColor.textSecondary} variant={TextVariant.caption} component={Component.h1}>{getLocalText().text.noCurrentOrder}</TextAtoms>
                 ) : (
-                    <StackMolecule spacing={Spacing.xlarge}>
+                    <StackAtoms spacing={Spacing.xlarge}>
                         <DropDownInputMolecule
-                            label={getLocalText().dish}
+                            label={getLocalText().text.dish}
                             value={selectedDishId}
                             disabled={isLoadingDishes}
-                            onChange={(event) => setSelectedDishId(event.target.value ? Number(event.target.value) : getLocalText().blank)}
-                        >
-                            {availableDishes.map((dish) => (
-                                <MenuItemMolecule key={dish.id} value={dish.id}>
-                                    {`${dish.name} - ${formatMoney(dish.price)}`}
+                            onChange={(event) => setSelectedDishId(Number(event.target.value))}>
+                            {availableDishes.map((item) => (
+                                <MenuItemMolecule key={item.id} value={item.id}>
+                                    {`${item.name} - ${formatMoney(item.price)}`}
                                 </MenuItemMolecule>
                             ))}
                         </DropDownInputMolecule>
                         <QuantityInputMolecule
-                            label={getLocalText().quantity}
+                            label={getLocalText().text.quantity}
                             value={quantity}
                             slotProps={{ htmlInput: { min: Numbers.one } }}
                             onChange={(event) => setQuantity(Math.max(Numbers.one, Number(event.target.value) || Numbers.one))}
                         />
                         <InputMolecule
-                            label={getLocalText().note}
+                            label={getLocalText().text.note}
                             value={note}
                             onChange={(event) => setNote(event.target.value)}
                         />
-                        <StackMolecule direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
-                            <TextAtoms color={TextColor.textSecondary} variant={TextVariant.body1} component={Component.h1}>{getLocalText().tempCalculate}</TextAtoms>
+                        <StackAtoms direction={FlexDirection.row} sx={{ justifyContent: JustifyContent.spaceBetween }}>
+                            <TextAtoms color={TextColor.textSecondary} variant={TextVariant.body1} component={Component.h1}>{getLocalText().text.tempCalculate}</TextAtoms>
                             <TextAtoms variant={TextVariant.body1} component={Component.h1} sx={{ fontWeight: FontWeight.w700 }}>{formatMoney(addDishTotal)}</TextAtoms>
-                        </StackMolecule>
-                    </StackMolecule>
+                        </StackAtoms>
+                    </StackAtoms>
                 )}
             </DialogContentMolecule>
             <DialogActionsMolecule>
-                <ButtonAtoms onClick={closeDialog} variant={ButtonVariant.text}>{getLocalText().close}</ButtonAtoms>
+                <ButtonAtoms onClick={closeDialog} variant={ButtonVariant.text}>{getLocalText().text.close}</ButtonAtoms>
                 <ButtonAtoms
                     variant={ButtonVariant.contained}
                     onClick={handleAddDish}
                     disabled={!hasCurrentOrder || !selectedDishId || quantity < Numbers.one || isAddingDish}
                 >
-                    {isAddingDish ? getLocalText().addingDish : getLocalText().addDish}
+                    {isAddingDish ? getLocalText().text.addingDish : getLocalText().text.addDish}
                 </ButtonAtoms>
             </DialogActionsMolecule>
         </DialogMolecule>

@@ -1,9 +1,10 @@
+import { Width } from "@/constants/props/sizes"
 import { ChipAtomsProps } from "@/types/components/common/atoms/chip"
 import { Chip } from "@mui/material"
 
 export default function ChipAtoms({ variant, icon, color, label, sx, onClick }: ChipAtomsProps) {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation()
+        onClick ? e.stopPropagation() : null
         onClick?.()
     }
 
@@ -13,6 +14,7 @@ export default function ChipAtoms({ variant, icon, color, label, sx, onClick }: 
         icon={icon}
         sx={{
             ...sx,
+            width: Width.fitContent,
         }}
         clickable={onClick ? true : false}
         onClick={handleClick}

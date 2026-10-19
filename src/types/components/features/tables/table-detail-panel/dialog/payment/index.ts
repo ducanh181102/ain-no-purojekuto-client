@@ -1,6 +1,6 @@
 import { TableDetailAction } from "@/types/actions";
 import { Dispatch, SetStateAction } from "react";
-import { DetailActionProps } from "../..";
+import { TableDetailActionProps } from "../..";
 
 type PaymentMethod = {
     value: string;
@@ -9,6 +9,6 @@ type PaymentMethod = {
 
 export type PaymentProps = {
     setActiveAction: Dispatch<SetStateAction<TableDetailAction | null>>;
-    activeAction?: DetailActionProps;
+    activeAction?: TableDetailActionProps;
     paymentMethods: PaymentMethod[];
 };

@@ -1,3 +1,5 @@
+import { NumSize } from "./sizes";
+
 export const GridTemplateColumns = {
   // 1 cột, chiếm toàn bộ chiều ngang
   oneColumn: "1fr",
@@ -140,20 +142,15 @@ export const JustifyItems = {
 export const Gap = {
   none: 0,
 
-  // 4px
-  xSmall: 0.5,
+  xSmall: NumSize.xsmallSpace,
 
-  // 8px
-  small: 1,
+  small: NumSize.smallSpace,
 
-  // 16px
-  medium: 2,
+  medium: NumSize.mediumSpace,
 
-  // 24px
-  large: 3,
+  large: NumSize.largeSpace,
 
-  // 32px
-  xLarge: 4,
+  xLarge: NumSize.xlargeSpace,
 } as const;
 
 export const RowGap = {
