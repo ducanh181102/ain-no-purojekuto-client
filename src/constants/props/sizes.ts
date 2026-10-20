@@ -152,6 +152,22 @@ export const NumSize = {
   headerTableHeight: "32px",
   bodyTableHeight: "480px",
 
+  // divider
+  x3smallDivider: "4px",
+  x2smallDivider: "8px",
+  xsmallDivider: "12px",
+  smallDivider: "16px",
+  mediumDivider: "24px",
+  largeDivider: "32px",
+  xlargeDivider: "48px",
+
+  // box
+  xsmallBoxHeight: "16px",
+  smallBoxHeight: "32px",
+  mediumBoxHeight: "64px",
+  largeBoxHeight: "128px",
+  xlargeBoxHeight: "256px",
+
 } as const;
 
 export const MaxLength = {
@@ -228,6 +244,11 @@ export const MaxHeight = {
   avatarLarge: NumSize.largeAvatarHeight,
   avatarXlarge: NumSize.xlargeAvatarHeight,
 
+  // box
+  boxSmall: NumSize.smallBoxHeight,
+  boxMedium: NumSize.mediumBoxHeight,
+  boxLarge: NumSize.largeBoxHeight,
+  boxXlarge: NumSize.xlargeBoxHeight,
 
 } as const;
 
@@ -274,6 +295,16 @@ export const Height = {
   textareaMedium: NumSize.mediumTextareaHeight,
   textareaLarge: NumSize.largeTextareaHeight,
 
+  // divider
+  dividerX3small: NumSize.x3smallDivider,
+  dividerX2small: NumSize.x2smallDivider,
+  dividerXsmall: NumSize.xsmallDivider,
+  dividerSmall: NumSize.smallDivider,
+  dividerMedium: NumSize.mediumDivider,
+  dividerLarge: NumSize.largeDivider,
+  dividerXlarge: NumSize.xlargeDivider,
+
+
 } as const;
 
 export const Width = {
@@ -318,6 +349,15 @@ export const Width = {
   iconMedium: NumSize.mediumIcon,
   iconLarge: NumSize.largeIcon,
   iconXLarge: NumSize.xlargeIcon,
+
+  // divider
+  dividerX3small: NumSize.x3smallDivider,
+  dividerX2small: NumSize.x2smallDivider,
+  dividerXsmall: NumSize.xsmallDivider,
+  dividerSmall: NumSize.smallDivider,
+  dividerMedium: NumSize.mediumDivider,
+  dividerLarge: NumSize.largeDivider,
+  dividerXlarge: NumSize.xlargeDivider,
 
 } as const;
 
@@ -385,8 +425,8 @@ export const Margin = {
   toolbar_spaceHeight: NumSize.toolBarHeight,
 
   // space
-  x2smallSpace: NumSize.x2smallSpace,
   x3smallSpace: NumSize.x3smallSpace,
+  x2smallSpace: NumSize.x2smallSpace,
   xsmallSpace: NumSize.xsmallSpace,
   smallSpace: NumSize.smallSpace,
   mediumSpace: NumSize.mediumSpace,
@@ -398,7 +438,7 @@ export const Padding = {
   // app
   sidebarWidth: NumSize.sideBarWidth,
   topbarHeight: NumSize.topBarHeight,
-  
+
 
   // space
   x3smallSpace: NumSize.x3smallSpace,
@@ -423,7 +463,12 @@ export const Padding = {
   cardLarge: NumSize.large,
   cardXLarge: NumSize.xlarge,
 
-
+  // chip
+  chipXSmall: NumSize.xsmall,
+  chipSmall: NumSize.small,
+  chipMedium: NumSize.medium,
+  chipLarge: NumSize.large,
+  chipXLarge: NumSize.xlarge,
 
 } as const;
 

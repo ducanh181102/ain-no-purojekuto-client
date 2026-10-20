@@ -29,7 +29,7 @@ type OrderStore = {
   searchKeyword: string
   setSearchKeyword: (keyword: string) => void
 
-  clearSelectedOrder: () => void
+  clearSelectedOrderId: () => void
   clearSelectedStatus: () => void
   clearSearchKeyword: () => void
   clearTotal: () => void
@@ -58,7 +58,7 @@ export const useOrderStore = create<OrderStore>()((set) => ({
   setTotalItems: (totalItems: TotalItems) => set({ totalItems: totalItems }),
 
   // hàm xóa các giá trị được chọn
-  clearSelectedOrder: () => set({
+  clearSelectedOrderId: () => set({
     selectedOrderId: null,
   }),
 

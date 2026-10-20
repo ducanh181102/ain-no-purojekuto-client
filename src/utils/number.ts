@@ -6,3 +6,8 @@ export const formatMoney = (value?: number | string | null) => {
     const safeAmount = Number.isFinite(amount) ? amount : Numbers.zero;
     return `${safeAmount.toLocaleString(getLocalText().text.numberLocale)} ${getLocalText().text.currencySuffix}`;
 };
+
+// phép nhân 2 số
+export const multiplyNumbers = (a: number, b: number): number => {
+    return a * b;
+};

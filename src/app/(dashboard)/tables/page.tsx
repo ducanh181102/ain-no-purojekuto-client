@@ -67,7 +67,8 @@ export default async function TablesPage() {
           borderWidth: BorderWidth.mediumBorder,
           borderRadius: BorderRadius.medium,
 
-          p: Padding.mediumSpace,
+          px: Padding.smallSpace,
+          py: Padding.smallSpace,
           fontSize: FontSize.x3large,
 
           fontWeight: FontWeight.w700,

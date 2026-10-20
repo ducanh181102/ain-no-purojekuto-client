@@ -17,8 +17,6 @@ export default function OrdersContent({ orderSx, detailSx }: OrderContentProps) 
   const searchKeyword = useOrderStore((state) => state.searchKeyword);
   const { data: orders = [], isLoading, isError } = useOrderStatus(status);
 
-  // const total = useOrderStore((state) => state.totalItems);
-
   const filteredOrders = useMemo(() => {
     const keyword = searchKeyword.trim().toLowerCase();
     return orders.filter((order) =>

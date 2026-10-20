@@ -28,8 +28,8 @@ export default function MainOrderClient({ filteredOrders }: MainOrderClientProps
     // setting total in store
     const setTotal = useOrderStore((state) => state.setTotal);
     // get vị trí của order được chọn trong danh sách filteredOrders
-    const selectedIndex = filteredOrders.findIndex((order) => order.id === selectedOrderId)
-    const total = useTotalOrderItemByOrderId(selectedOrderId).data?.total || 0;
+    const selectedIndex = filteredOrders.findIndex((order) => order.id === selectedOrderId) 
+    const {data: total = { total: 0 }} = useTotalOrderItemByOrderId(selectedOrderId);
     const { data: orderItems = [] } = useOrderItemByOrderId(selectedOrderId);
 
     const headers = new Set([
@@ -83,14 +83,14 @@ export default function MainOrderClient({ filteredOrders }: MainOrderClientProps
         data: orders,
         gridSizes: gridSizes,
         // vị trí của order được chọn trong danh sách filteredOrders, 
-        selectedIndex,
+        selectedIndex: selectedIndex !== -1 ? selectedIndex : null,
         // khi click vào 1 row trong table, set orderId của order được chọn
         onRowClick: (index: number) => {
             const order = filteredOrders[index]
             if (order) {
                 setOrderId(order.id)
                 setTotalItems({ orderId: order.id, totalItems: orderItems.length })
-                setTotal({ orderId: order.id, total: total })
+                setTotal({ orderId: order.id, total: total.total ?? 0 })
             }
         },
     }

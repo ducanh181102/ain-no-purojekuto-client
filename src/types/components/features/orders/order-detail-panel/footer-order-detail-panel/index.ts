@@ -3,5 +3,5 @@ import { OrderProps } from "../..";
 
 export type FooterOrderDetailPanelProps = {
     sx?: Sx,
-    order?: OrderProps,
+    orderId?: number | null,
 }

@@ -8,7 +8,7 @@ export const Strings = {
       reserved: "Đã đặt",
       canceled: "Đã hủy",
     },
-    LowerCaseOrderStatus: {
+    orderStatus: {
       all: "Tất cả",
       open: "Đang mở",
       pending: "Chờ xác nhận",
@@ -118,8 +118,11 @@ export const Strings = {
       tableAvailableTitle: "Bàn đang trống",
       reservedTableTitle: "Bàn đã đặt trước",
       noSelectedTableTitle: "Chưa chọn bàn",
+      noSelectedOrderTitle: "Chưa chọn đơn",
       noSelectedTableDescription: "Chọn một bàn trong danh sách để xem trạng thái, đơn hàng và thao tác.",
+      noSelectedOrderDescription: "Chọn một đơn hàng trong danh sách để xem chi tiết.",
       chooseTableFromList: "Chọn bàn từ danh sách",
+      chooseOrderFromList: "Chọn đơn từ danh sách",
       noOpenOrderDescription: "Chưa có đơn hàng đang mở. Nhân viên có thể mở bàn ngay hoặc tạo lịch đặt trước cho khách.",
       processingStatus: "Trạng thái xử lý",
       notServed: "Chưa phục vụ",
@@ -282,6 +285,7 @@ export const Strings = {
       orderCodePrefix: "#HD-",
       dishCodePrefix: "Món #",
       space: " ",
+      multiplication: "x",
     }
   },
   en: {
@@ -293,7 +297,7 @@ export const Strings = {
       reserved: "Reserved",
       canceled: "Canceled",
     },
-    LowerCaseOrderStatus: {
+    orderStatus: {
       all: "All",
       open: "Open",
       pending: "Pending",
@@ -402,8 +406,11 @@ export const Strings = {
       tableAvailableTitle: "Available table",
       reservedTableTitle: "Reserved table",
       noSelectedTableTitle: "No table selected",
+      noSelectedOrderTitle: "No order selected",
       noSelectedTableDescription: "Choose a table from the list to view status, orders, and actions.",
+      noSelectedOrderDescription: "Choose an order from the list to view details.",
       chooseTableFromList: "Choose a table from the list",
+      chooseOrderFromList: "Choose an order from the list",
       noOpenOrderDescription: "There is no open order. Staff can open the table now or create a reservation for guests.",
       processingStatus: "Processing status",
       notServed: "Not served",
@@ -566,6 +573,7 @@ export const Strings = {
       orderCodePrefix: "#HD-",
       dishCodePrefix: "Dish #",
       space: " ",
+      multiplication: "x",
     }
   },
 } as const;
