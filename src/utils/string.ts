@@ -14,3 +14,9 @@ export const getOrderCode = (code: number | undefined): string => {
   if (codeLength >= 5) return codeString
   return getLocalText().code.orderCodePrefix + '0'.repeat(5 - codeLength) + codeString
 }
+
+// orderItemsCount: 12 => x12
+export const getOrderItemsCount = (count: number | undefined): string => {
+  if (count === undefined) return getLocalText().text.blank
+  return getLocalText().code.multiplication + count.toString()
+}

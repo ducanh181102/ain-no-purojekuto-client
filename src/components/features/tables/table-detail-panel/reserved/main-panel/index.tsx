@@ -34,7 +34,7 @@ export default function ReservedMainPanel() {
         <BoxAtoms component={Component.main} sx={{
             display: Display.flex,
             flexDirection: FlexDirection.column,
-            gap: Gap.small,
+            gap: Gap.x2Small,
         }}>
             <BoxAtoms component={Component.div} sx={{
                 display: Display.flex,
@@ -155,7 +155,7 @@ export default function ReservedMainPanel() {
                 display: Display.flex,
                 flexDirection: FlexDirection.column,
                 justifyContent: JustifyContent.spaceBetween,
-                gap: Gap.xSmall,
+                gap: Gap.x3Small,
             }}>
                 <TextAtoms variant={TextVariant.subtitle1}
                     component={"div"}
@@ -166,25 +166,26 @@ export default function ReservedMainPanel() {
                     color={TextColor.textSecondary} >
                     {getLocalText().text.note}
                 </TextAtoms>
-                <TextAtoms variant={TextVariant.subtitle2}
-                    component={"div"}
-                    sx={{
-                        fontSize: FontSize.large,
-                        fontWeight: FontWeight.w500,
-                        overflow: Overflow.auto,
-                        borderRadius: BorderRadius.medium,
-                        borderWidth: BorderWidth.mediumBorder,
-                        borderColor: SxColor.border,
-                        bgcolor: SxColor.backgroundItem,
-                        px: Padding.smallSpace,
-                        py: Padding.smallSpace,
-                        height: Height.textareaLarge,
-                        wordBreak: WordBreak.breakWord,
-                    }}
-                    align={TextAlign.left}
-                    color={TextColor.textPrimary} >
-                    {reservation?.note || ""}
-                </TextAtoms>
+                {reservation?.note && (
+                    <TextAtoms variant={TextVariant.subtitle2}
+                        component={Component.div}
+                        sx={{
+                            fontSize: FontSize.large,
+                            fontWeight: FontWeight.w500,
+                            overflow: Overflow.auto,
+                            borderRadius: BorderRadius.medium,
+                            borderWidth: BorderWidth.mediumBorder,
+                            borderColor: SxColor.border,
+                            bgcolor: SxColor.backgroundItem,
+                            px: Padding.x2smallSpace,
+                            py: Padding.x3smallSpace,
+                            height: Height.textareaMedium,
+                            wordBreak: WordBreak.breakWord,
+                        }}
+                        align={TextAlign.left}
+                        color={TextColor.textPrimary} >
+                        {reservation?.note || ""}
+                    </TextAtoms>)}
             </BoxAtoms>
         </BoxAtoms>
     </>

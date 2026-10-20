@@ -9,6 +9,7 @@ import { FlexDirection, Gap } from "@/constants/props/flexs";
 import { FontWeight } from "@/constants/props/input-props";
 import { FontSize } from "@/constants/props/sizes";
 import { getLocalText } from "@/lib/i18n";
+import { getOrderCode } from "@/utils/string";
 
 export default function CodeOrderClientBox({ code }: { code: number }) {
     return <BoxAtoms component={Component.div} sx={{
@@ -21,7 +22,7 @@ export default function CodeOrderClientBox({ code }: { code: number }) {
             sx={{
                 fontSize: FontSize.medium,
                 fontWeight: FontWeight.w600,
-            }} component={Component.label} children={getLocalText().code.orderCodePrefix + code} />
+            }} component={Component.label} children={getOrderCode(code)} />
         <TextAtoms
             color={TextColor.textSecondary}
             sx={{

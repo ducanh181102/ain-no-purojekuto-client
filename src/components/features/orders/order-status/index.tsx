@@ -12,7 +12,7 @@ export default function OrderStatus({ status, count, onClick, icon }: OrderStatu
   const statusLowerCase =  status?.toLowerCase() as keyof typeof LowerCaseOrderStatus;
   const color = ColorOrderStatus[statusLowerCase];
   const bgcolor = BgColorOrderStatus[statusLowerCase];
-  const label = getLocalText().LowerCaseOrderStatus[statusLowerCase] + (count !== undefined ? ` ${count}` : getLocalText().text.blank);
+  const label = getLocalText().orderStatus[statusLowerCase] + (count !== undefined ? ` ${count}` : getLocalText().text.blank);
 
   return onClick ? <StatusButtonChip onClick={onClick} color={color} bgcolor={bgcolor} label={label} icon={icon} /> :
     <StatusChip color={color} bgcolor={bgcolor} label={label} />;

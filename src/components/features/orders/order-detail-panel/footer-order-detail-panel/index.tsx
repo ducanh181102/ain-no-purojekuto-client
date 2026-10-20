@@ -3,22 +3,22 @@
 import BoxAtoms from "@/components/common/atoms/box";
 import LineAtoms from "@/components/common/atoms/line";
 import TextAtoms from "@/components/common/atoms/text";
-import { SxColor, TextColor } from "@/constants/props/colors";
+import { TextColor } from "@/constants/props/colors";
 import { Component } from "@/constants/props/components";
 import { Display } from "@/constants/props/displays";
 import { AlignSelf } from "@/constants/props/flexs";
-import { Gap, JustifyContent } from "@/constants/props/grids";
+import { JustifyContent } from "@/constants/props/grids";
 import { FontWeight } from "@/constants/props/input-props";
 import { Orientation } from "@/constants/props/orientations";
 import { FontSize, Margin } from "@/constants/props/sizes";
+import { useTotalOrderItemByOrderId } from "@/hooks/queries/useOrderItems";
 import { getLocalText } from "@/lib/i18n";
-import { useOrderStore } from "@/stores/useOrderStore";
 import { FooterOrderDetailPanelProps } from "@/types/components/features/orders/order-detail-panel/footer-order-detail-panel";
 import { formatMoney } from "@/utils/number";
 
 
-export default function FooterOrderDetailPanel({ sx, order }: FooterOrderDetailPanelProps) {
-    const total = useOrderStore((state) => state.total);
+export default function FooterOrderDetailPanel({ sx, orderId }: FooterOrderDetailPanelProps) {
+    const { data: total = { total: 0 } } = useTotalOrderItemByOrderId(orderId ? orderId : null);
 
     return <BoxAtoms component={Component.footer}
         sx={{
